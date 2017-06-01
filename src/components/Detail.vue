@@ -3,7 +3,7 @@
     <md-toolbar id="md-toolbar">
       <md-button class="md-icon-button"> <!--@click.native="back">-->
         <router-link :to="'Topic'">
-        <md-icon>arrow_back</md-icon>
+          <md-icon>arrow_back</md-icon>
         </router-link>
       </md-button>
       <h2 class="md-title">话题</h2>
@@ -65,7 +65,7 @@
       </div>
     </div>
     <md-spinner md-indeterminate class="loading" v-show="loading"></md-spinner>
-    <button-icon :icon="'reply'"></button-icon>
+    <button-icon :icon="'reply'" v-show="edit_show"></button-icon>
   </div>
 </template>
 
@@ -75,6 +75,7 @@
   import axios from 'axios'
   import {mapState} from 'vuex'
   import format from '../assets/js/format'
+  import scroll from '../assets/js/scroll'
 
   export default {
     data() {
@@ -84,13 +85,25 @@
         loading: true,
         showDetail: false,
         collect: false,
-        de_collect: true
+        de_collect: true,
+        edit_show: true
       }
     },
     mounted() {
       this.$nextTick(() => {
         this.getDetail(this.$route.query.id)
-//        this.test1()
+
+        scroll((direction) => {
+          if (direction === 'down') {
+            setTimeout(() => {
+              this.edit_show = false
+            }, 200)
+          } else {
+            setTimeout(() => {
+              this.edit_show = true
+            }, 200)
+          }
+        })
       })
     },
     methods: {

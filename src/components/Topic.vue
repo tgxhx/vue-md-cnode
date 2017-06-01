@@ -24,7 +24,7 @@
             <div class="user-info">
               <!--<router-link :to="{path: 'user', query:{name:item.author.loginname}}">-->
               <router-link :to="'user/' + item.author.loginname">
-                <img :src="item.author.avatar_url" alt=""  @click="userJump">
+                <img :src="item.author.avatar_url" alt="" @click="userJump">
               </router-link>
               <div class="user-name">
                 <span>{{item.author.loginname}}</span>
@@ -44,8 +44,9 @@
     <div class="bottom-loading" v-show="b_loading">
       <md-spinner :md-size="30" md-indeterminate class="bottom"></md-spinner>
     </div>
-
-    <button-icon :icon="'edit'"></button-icon>
+    <transition name="fade">
+      <button-icon :icon="'edit'" v-show="edit_show"></button-icon>
+    </transition>
     <div class="login-info" v-if="login_tip">登录成功</div>
   </div>
 </template>
@@ -57,6 +58,7 @@
   import {mapState} from 'vuex'
   import format from '../assets/js/format'
   import local from '../assets/js/local'
+  import scroll from '../assets/js/scroll'
 
   export default {
     data() {
@@ -65,7 +67,8 @@
         list: [],
         loading: true,
         b_loading: false,
-        login_tip: false
+        login_tip: false,
+        edit_show: true
       }
     },
     mounted() {
@@ -76,9 +79,19 @@
         this.login_tip = this.loginStatus
         setTimeout(() => {
           this.login_tip = false
-        },3000)
+        }, 3000)
+        scroll((direction) => {
+          if (direction === 'down') {
+//            setTimeout(() => {
+              this.edit_show = false
+//            },200)
+          } else {
+            setTimeout(() => {
+              this.edit_show = true
+            },200)
+          }
+        })
       })
-
     },
     methods: {
       toggleLeftSidenav() {
@@ -92,7 +105,7 @@
         })
       },
       openDetail(id) {
-          this.$store.dispatch('topicDetail', id)
+        this.$store.dispatch('topicDetail', id)
       },
       more() {
         let scrolled = document.documentElement.scrollTop || window.pageYOffset || document.body.scrollTop
@@ -100,7 +113,7 @@
           this.$store.dispatch('loadPage')
         }
         if (document.body.scrollTop >= 1000) {
-            this.b_loading = true
+          this.b_loading = true
         }
       },
       showLoading(val) {
@@ -142,7 +155,7 @@
     },
     computed: {
       ...mapState([
-        'tab', 'page', 'showTopic','loginStatus'
+        'tab', 'page', 'showTopic', 'loginStatus'
       ])
     },
     watch: {
@@ -165,6 +178,7 @@
   .md-theme-default.md-toolbar {
     background-color: $baseColor !important;
   }
+
   .md-theme-default a:not(.md-button) {
     &:hover {
       color: #444;
@@ -297,15 +311,23 @@
 
   .login-info {
     position: fixed;
-    left:50%;
+    left: 50%;
     transform: translate(-50%, 0);
-    bottom:pr(100);
-    font-size:pr(16);
-    background-color: rgba(0,0,0,.5);
-    color:#fff;
-    padding:pr(6) pr(10);
+    bottom: pr(100);
+    font-size: pr(16);
+    background-color: rgba(0, 0, 0, .5);
+    color: #fff;
+    padding: pr(6) pr(10);
     border-radius: pr(20);
     transition: all .5s;
+  }
+
+  .fade-enter-active, .fade-leave-active {
+    transition: all .5s;
+  }
+
+  .fade-enter, .fade-leave-active {
+    opacity: 0;
   }
 
 </style>
