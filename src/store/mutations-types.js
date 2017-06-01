@@ -12,3 +12,5 @@ export const LOGIN_INFO = 'LOGIN_INFO'
 export const LOGIN_STATUS = 'LOGIN_STATUS'
 //用户信息底部默认加载的选项
 export const USER_ITEM = 'USER_ITEM'
+//跳转到用户列表前的当前url
+export const USER_JUMP = 'USER_JUMP'

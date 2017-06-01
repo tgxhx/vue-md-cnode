@@ -28,5 +28,8 @@ export default {
   },
   [types.USER_ITEM](state, type) {
     state.userItem = type
+  },
+  [types.USER_JUMP](state, url) {
+    state.user_jump = url
   }
 }

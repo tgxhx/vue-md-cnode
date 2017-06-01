@@ -24,7 +24,7 @@
             <div class="user-info">
               <!--<router-link :to="{path: 'user', query:{name:item.author.loginname}}">-->
               <router-link :to="'user/' + item.author.loginname">
-                <img :src="item.author.avatar_url" alt="" >
+                <img :src="item.author.avatar_url" alt=""  @click="userJump">
               </router-link>
               <div class="user-name">
                 <span>{{item.author.loginname}}</span>
@@ -106,6 +106,10 @@
       showLoading(val) {
         this.loading = val
 //        console.log(1)
+      },
+      userJump() {
+        const url = window.location.href.split('#')[1]
+        this.$store.dispatch('userJump', url)
       }
     },
     filters: {

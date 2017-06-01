@@ -2,9 +2,11 @@
   <div class="user-info">
     <div class="user-header">
       <md-toolbar id="md-toolbar">
-        <md-button class="md-icon-button" @click.native="back">
-          <md-icon>arrow_back</md-icon>
-        </md-button>
+        <router-link :to="{path: backUrl}">
+          <md-button class="md-icon-button"> <!--@click.native="back">-->
+            <md-icon>arrow_back</md-icon>
+          </md-button>
+        </router-link>
       </md-toolbar>
       <div class="user-avatar">
         <div class="avatar">
@@ -45,16 +47,19 @@
 
 <script type="text/ecmascript-6">
   import axios from 'axios'
+  import {mapState} from 'vuex'
 
   export default {
     data() {
       return {
         url: 'https://cnodejs.org/api/v1/user/',
-        user: {}
+        user: {},
+        backUrl: ''
       }
     },
     mounted() {
       this.getData(this.$route.params.id)
+      this.backUrl = this.user_jump
     },
     filters: {
       regTime(value) {
@@ -74,7 +79,11 @@
         this.$store.dispatch('userItem', type)
       }
     },
-    components: {}
+    computed: {
+      ...mapState([
+        'user_jump'
+      ])
+    }
   }
 </script>
 

@@ -15,7 +15,8 @@ const state = {
   topicDetail: '',
   loginInfo: {},
   loginStatus: false,
-  userItem: 'reply'
+  userItem: 'reply',
+  user_jump: ''
 }
 
 export default new Vuex.Store({

@@ -1,10 +1,10 @@
 <template>
   <div class="detail-container">
     <md-toolbar id="md-toolbar">
-      <md-button class="md-icon-button" @click.native="back">
-        <!--<router-link :to="'Topic'">-->
+      <md-button class="md-icon-button"> <!--@click.native="back">-->
+        <router-link :to="'Topic'">
         <md-icon>arrow_back</md-icon>
-        <!--</router-link>-->
+        </router-link>
       </md-button>
       <h2 class="md-title">话题</h2>
     </md-toolbar>
@@ -45,7 +45,7 @@
             <div class="user-l">
               <!--<img :src="item.author.avatar_url" alt="">-->
               <router-link :to="'/user/' + item.author.loginname">
-                <img :src="item.author.avatar_url" alt="">
+                <img :src="item.author.avatar_url" alt="" @click="userJump">
               </router-link>
               <div class="user-name">
                 <p><span class="name">{{item.author.loginname}}</span></p>
@@ -119,6 +119,10 @@
       },
       back() {
         this.$router.back(-1)
+      },
+      userJump() {
+        const url = window.location.href.split('#')[1]
+        this.$store.dispatch('userJump', url)
       }
     },
     components: {

@@ -21,5 +21,8 @@ export default {
   },
   userItem({commit}, type) {
     commit(types.USER_ITEM, type)
+  },
+  userJump({commit}, url) {
+    commit(types.USER_JUMP, url)
   }
 }
