@@ -3,7 +3,7 @@
     <md-toolbar class="md-large" v-if="loginStatus">
       <md-avatar class="md-large">
         <router-link :to="'user/' + loginInfo.loginname">
-          <img :src="loginInfo.avatar_url" alt="Avatar">
+          <img :src="loginInfo.avatar_url" alt="Avatar" @click="userJump">
         </router-link>
       </md-avatar>
       <div class="username">
@@ -66,21 +66,20 @@
 <script type="text/ecmascript-6">
   import axios from 'axios'
   import {mapState} from 'vuex'
+  import local from '../assets/js/local'
 
   export default {
     data() {
       return {
         url: 'https://cnodejs.org/api/v1/topics',
-        userinfo: {
-          avatar: 'https://avatars0.githubusercontent.com/u/5463739?v=3&s=120',
-          name: '张三',
-          intro: '“ 这家伙很懒，什么个性签名都没有留下。 ”'
-        }
+        userinfo: {}
       }
     },
     mounted() {
       this.$nextTick(() => {
         this.changeBg()
+        this.$store.dispatch('loginInfo', local.get('loginInfo'))
+        this.$store.dispatch('loginStatus', true)
       })
     },
     methods: {
@@ -94,6 +93,7 @@
         this.$emit('show-loading', true)
         this.$refs.leftSidenav.close()
       },
+      //当前tab高亮
       changeBg() {
         document.querySelectorAll('.md-list-item').forEach((v, i) => {
           v.addEventListener('click', (e) => {
@@ -103,6 +103,10 @@
       },
       logout() {
           localStorage.removeItem('loginInfo')
+      },
+      userJump() {
+        const url = window.location.href.split('#')[1]
+        this.$store.dispatch('userJump', url)
       }
     },
     computed: {

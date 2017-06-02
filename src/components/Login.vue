@@ -8,9 +8,10 @@
         <h2 class="md-title">登录</h2>
       </md-toolbar>
     </div>
-    <div class="login-panel">
-      <input class="token" type="text" v-model="access_token" placeholder="Access Token:">
-      <p v-show="token_error">Access Token格式错误，应为UUID</p>
+    <div class="login-panel" :class="{'login-focus': isTop}">
+      <label class="login-label" ref="label">Access Token:</label>
+      <input class="token" type="text" v-model="access_token" @focus="labelTop(true)" @blur="labelTop(false)">
+      <p v-show="!errorInfo.success">{{errorInfo.error_msg}}</p>
       <button class="login-btn" @click="login">登录</button>
       <div class="login-option">
         <div class="qr-login"><i class="iconfont">&#xe698;</i>扫码登录</div>
@@ -29,7 +30,8 @@
     data() {
       return {
         access_token: '',
-        token_error: false
+        errorInfo: {success: true},
+        isTop: false
       }
     },
     methods: {
@@ -38,18 +40,39 @@
       },
       login(){
         axios.post(`https://cnodejs.org/api/v1/accesstoken?accesstoken=${this.access_token}`).then(res => {
-            res.data.accesstoken = this.access_token
-            this.$store.dispatch('loginInfo', res.data)
-          local.set('loginInfo',res.data)
+          res.data.accesstoken = this.access_token
+          this.$store.dispatch('loginInfo', res.data)
+          local.set('loginInfo', res.data)
           this.$store.dispatch('loginStatus', true)
           this.$router.back(-1)
+        }).catch(res => {
+          this.errorInfo = res.response.data
         })
-      }
+      },
+      labelTop(bool) {
+        bool
+          ? this.isTop = true
+          : !this.access_token
+            ? this.isTop = false
+            : ''
+        /*if (bool) {
+         this.isTop = true
+         } else {
+         if (!this.access_token) {
+         this.isTop = false
+         }
+         }*/
+      },
     },
     computed: {
       ...mapState([
         'loginInfo'
       ])
+    },
+    watch: {
+      access_token(val, oldVal) {
+        this.errorInfo.success = true
+      }
     }
   }
 </script>
@@ -59,9 +82,6 @@
 
   body {
     background-color: #f8f8f8 !important;
-  }
-
-  .login {
   }
 
   .login-header {
@@ -85,12 +105,33 @@
     background: #fff;
     border: 1px solid #ccc;
     box-shadow: 0 2px 5px #ccc, 0 0 1px #ccc, 0 0 1px #ccc;
+    &.login-focus {
+      .login-label {
+        color: $baseColor;
+        transform: scale(0.85, 0.85) translateY(-(pr(20)));
+      }
+    }
+    .login-label {
+      position: absolute;
+      font-size: pr(14);
+      top: pr(35);
+      z-index: 0;
+      -webkit-transform-origin: 0 0;
+      transform-origin: 0 0;
+      transition-duration: .3s;
+      -webkit-transition-property: color, -webkit-transform;
+      transition-property: color, -webkit-transform;
+      transition-property: color, transform;
+      transition-property: color, transform, -webkit-transform;
+      transition-timing-function: cubic-bezier(.4, 0, .2, 1);
+    }
     .token {
       display: block;
       width: 100%;
       border: none;
       padding: pr(5) 0;
       border-bottom: 2px solid $baseColor;
+      z-index: 1;
       &:focus {
         outline: none;
       }

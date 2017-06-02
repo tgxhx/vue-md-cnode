@@ -103,6 +103,9 @@
     color: #fff;
     .md-toolbar {
       background: transparent !important;
+      a:not(.md-button) {
+        color: #fff;
+      }
     }
     .avatar {
       /*margin-top:pr(25);*/
