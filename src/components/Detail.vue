@@ -109,6 +109,7 @@
       getDetail(id) {
         axios.get(`${this.url}topic/${id}`).then(res => {
           this.obj = res.data.data
+          this.is_uped(this.obj.replies)
           this.loading = false
           this.showDetail = true
         })
@@ -129,13 +130,28 @@
           this.collect = false
         })
       },
+//
+      is_uped(replies) {
+        replies.forEach((item) => {
+          item.is_uped = item.ups.some(up => {
+            return up === this.loginInfo.id
+          })
+        })
+      },
+      arrRemoveItem(arr, item) {
+        return arr.slice(0,arr.indexOf(item)).concat(arr.slice(arr.indexOf(item)+1,arr.length))
+      },
       likeUp(item) {
         axios.post(`${this.url}reply/${item.id}/ups`, {
           accesstoken: this.loginInfo.accesstoken
         }).then(res => {
-          item.is_uped = true
-          console.log(item.is_uped)
-          /*this.getDetail(this.$route.query.id)*/
+          if (res.data.action === 'up') {
+            item.is_uped = true
+            item.ups.push(this.loginInfo.id)
+          } else {
+            item.is_uped = false
+            item.ups = this.arrRemoveItem(item.ups, this.loginInfo.id)
+          }
         })
       },
       back() {
@@ -361,6 +377,9 @@
         }
         .user-r {
           color: #888;
+          .material-icons.active {
+            color: $baseColor;
+          }
           .thumb_up_count {
             font-size: pr(12);
             position: relative;

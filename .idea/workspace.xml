@@ -78,8 +78,8 @@
           <file leaf-file-name="Detail.vue" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/components/Detail.vue">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="-812">
-                  <caret line="56" column="83" lean-forward="false" selection-start-line="56" selection-start-column="83" selection-end-line="56" selection-end-column="83" />
+                <state relative-caret-position="662">
+                  <caret line="159" column="18" lean-forward="true" selection-start-line="159" selection-start-column="18" selection-end-line="159" selection-end-column="18" />
                   <folding>
                     <element signature="e#3023#3058#0" expanded="true" />
                   </folding>
@@ -455,7 +455,7 @@
       <workItem from="1495937785114" duration="154000" />
       <workItem from="1496024979881" duration="601000" />
       <workItem from="1496199840114" duration="3798000" />
-      <workItem from="1496320639397" duration="25979000" />
+      <workItem from="1496320639397" duration="29026000" />
     </task>
     <task id="LOCAL-00001" summary="readme">
       <created>1496210828218</created>
@@ -485,11 +485,18 @@
       <option name="project" value="LOCAL" />
       <updated>1496503068464</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="回复点赞">
+      <created>1496505448419</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1496505448419</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="150978000" />
+    <option name="totallyTimeSpent" value="154025000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -551,7 +558,8 @@
     <MESSAGE value="滚动显示隐藏编辑回复按钮" />
     <MESSAGE value="登录状态" />
     <MESSAGE value="注销、收藏主题" />
-    <option name="LAST_COMMIT_MESSAGE" value="注销、收藏主题" />
+    <MESSAGE value="回复点赞" />
+    <option name="LAST_COMMIT_MESSAGE" value="回复点赞" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -927,8 +935,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/components/Detail.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-812">
-          <caret line="56" column="83" lean-forward="false" selection-start-line="56" selection-start-column="83" selection-end-line="56" selection-end-column="83" />
+        <state relative-caret-position="662">
+          <caret line="159" column="18" lean-forward="true" selection-start-line="159" selection-start-column="18" selection-end-line="159" selection-end-column="18" />
           <folding>
             <element signature="e#3023#3058#0" expanded="true" />
           </folding>
