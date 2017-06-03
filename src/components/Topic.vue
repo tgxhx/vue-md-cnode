@@ -75,7 +75,10 @@
       this.$nextTick(() => {
         this.getData('all')
         window.addEventListener('scroll', this.more)
-        this.$store.dispatch('loginInfo', local.get('loginInfo'))
+        if (local.get('loginInfo') != null) {
+          this.$store.dispatch('loginInfo', local.get('loginInfo'))
+          this.$store.dispatch('loginStatus', true)
+        }
         this.login_tip = this.loginStatus
         setTimeout(() => {
           this.login_tip = false
@@ -83,12 +86,12 @@
         scroll((direction) => {
           if (direction === 'down') {
 //            setTimeout(() => {
-              this.edit_show = false
+            this.edit_show = false
 //            },200)
           } else {
             setTimeout(() => {
               this.edit_show = true
-            },200)
+            }, 200)
           }
         })
       })

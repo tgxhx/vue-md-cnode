@@ -9,7 +9,7 @@
       <div class="username">
         {{loginInfo.loginname}}
       </div>
-      <div class="intro" @click="logout">
+      <div class="intro" @click="openDialog('logout-dialog')">
         注销
       </div>
     </md-toolbar>
@@ -60,6 +60,13 @@
         <span>关于</span>
       </md-list-item>
     </md-list>
+    <md-dialog md-open-from="#custom" md-close-to="#custom" ref="logout-dialog">
+      <md-dialog-title>确定注销吗？</md-dialog-title>
+      <md-dialog-actions>
+        <md-button class="md-primary" @click.native="closeDialog('logout-dialog','cancel')">取消</md-button>
+        <md-button class="md-primary" @click.native="closeDialog('logout-dialog','ok')">注销</md-button>
+      </md-dialog-actions>
+    </md-dialog>
   </md-sidenav>
 </template>
 
@@ -72,14 +79,23 @@
     data() {
       return {
         url: 'https://cnodejs.org/api/v1/topics',
-        userinfo: {}
+        userinfo: {},
+        confirm: {
+          title: '提示',
+          contentHtml: '确定注销吗？',
+          ok: '注销',
+          cancel: '取消'
+        }
       }
     },
     mounted() {
       this.$nextTick(() => {
         this.changeBg()
-        this.$store.dispatch('loginInfo', local.get('loginInfo'))
-        this.$store.dispatch('loginStatus', true)
+        /*if (local.get('loginInfo') != null) {
+          this.$store.dispatch('loginInfo', local.get('loginInfo'))
+        }*/
+
+//        this.$store.dispatch('loginStatus', true)
       })
     },
     methods: {
@@ -101,9 +117,18 @@
           }, false)
         })
       },
-      logout() {
-          localStorage.removeItem('loginInfo')
+      openDialog(ref) {
+        this.$refs[ref].open();
       },
+      closeDialog(ref, type) {
+        this.$refs[ref].close();
+        if (type === 'ok') {
+          localStorage.removeItem('loginInfo')
+          this.$store.dispatch('loginInfo', {})
+          this.$store.dispatch('loginStatus', false)
+          console.log('已注销')
+        }
+       },
       userJump() {
         const url = window.location.href.split('#')[1]
         this.$store.dispatch('userJump', url)
@@ -111,7 +136,7 @@
     },
     computed: {
       ...mapState([
-        'loginInfo','loginStatus'
+        'loginInfo', 'loginStatus'
       ])
     }
   }
@@ -141,6 +166,15 @@
       max-width: 90%;
       font-size: pr(12);
       @include ell;
+    }
+  }
+
+  .md-dialog {
+    min-width:pr(300);
+    .md-dialog-title {
+      font-size:pr(16);
+      margin-bottom:pr(10);
+      padding:pr(18) pr(24) 0;
     }
   }
 </style>

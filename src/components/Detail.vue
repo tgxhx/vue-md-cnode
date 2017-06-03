@@ -30,7 +30,7 @@
             </div>
           </div>
           <div class="user-r">
-            <md-icon v-if="collect">favorite</md-icon>
+            <md-icon v-if="collect" @click.native="de_collectTopic">favorite</md-icon>
             <md-icon v-else @click.native="collectTopic">favorite_border</md-icon>
           </div>
         </div>
@@ -54,7 +54,7 @@
               </div>
             </div>
             <div class="user-r">
-              <md-icon @click.native="likeUp(item.id)">thumb_up</md-icon>
+              <md-icon @click.native="likeUp(item.id)" :class="{'active': true}">thumb_up</md-icon>
               <span class="thumb_up_count">{{item.ups.length}}</span>
               <md-icon>reply</md-icon>
             </div>
@@ -80,7 +80,7 @@
   export default {
     data() {
       return {
-        url: 'https://cnodejs.org/api/v1/topic/',
+        url: 'https://cnodejs.org/api/v1/',
         obj: {},
         loading: true,
         showDetail: false,
@@ -92,7 +92,6 @@
     mounted() {
       this.$nextTick(() => {
         this.getDetail(this.$route.query.id)
-
         scroll((direction) => {
           if (direction === 'down') {
             setTimeout(() => {
@@ -108,7 +107,7 @@
     },
     methods: {
       getDetail(id) {
-        axios.get(`${this.url}${id}`).then(res => {
+        axios.get(`${this.url}topic/${id}`).then(res => {
           this.obj = res.data.data
           this.loading = false
           this.showDetail = true
@@ -119,15 +118,22 @@
           accesstoken: this.loginInfo.accesstoken,
           topic_id: this.$route.query.id
         }).then(res => {
-          this.collect = res.data.success
-          console.log(this.collect)
+          this.collect = true
+        })
+      },
+      de_collectTopic() {
+        axios.post(`${this.url}topic_collect/de_collect`, {
+          accesstoken: this.loginInfo.accesstoken,
+          topic_id: this.$route.query.id
+        }).then(res => {
+          this.collect = false
         })
       },
       likeUp(reply_id) {
         axios.post(`${this.url}reply/${reply_id}/ups`, {
           accesstoken: this.loginInfo.accesstoken
         }).then(res => {
-          console.log('like')
+          this.getDetail(this.$route.query.id)
         })
       },
       back() {
@@ -146,6 +152,11 @@
       time(value) {
         return format.formatMsgTime(format.getTimeStamp(value))
       },
+      likeorno(value) {
+        value.some(item => {
+          return item === this.loginInfo.id
+        })
+      }
     },
     computed: {
       ...mapState([
