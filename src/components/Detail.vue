@@ -54,7 +54,7 @@
               </div>
             </div>
             <div class="user-r">
-              <md-icon @click.native="likeUp(item.id)" :class="{'active': true}">thumb_up</md-icon>
+              <md-icon @click.native="likeUp(item)" :class="{'active': item.is_uped}">thumb_up</md-icon>
               <span class="thumb_up_count">{{item.ups.length}}</span>
               <md-icon>reply</md-icon>
             </div>
@@ -129,11 +129,13 @@
           this.collect = false
         })
       },
-      likeUp(reply_id) {
-        axios.post(`${this.url}reply/${reply_id}/ups`, {
+      likeUp(item) {
+        axios.post(`${this.url}reply/${item.id}/ups`, {
           accesstoken: this.loginInfo.accesstoken
         }).then(res => {
-          this.getDetail(this.$route.query.id)
+          item.is_uped = true
+          console.log(item.is_uped)
+          /*this.getDetail(this.$route.query.id)*/
         })
       },
       back() {
