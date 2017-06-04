@@ -19,6 +19,9 @@ export default {
   loginStatus({commit}, status) {
     commit(types.LOGIN_STATUS, status)
   },
+  loginTip({commit}, bool) {
+    commit(types.LOGIN_TIP, bool)
+  },
   userItem({commit}, type) {
     commit(types.USER_ITEM, type)
   },

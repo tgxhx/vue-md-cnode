@@ -26,6 +26,12 @@ export default {
   [types.LOGIN_STATUS](state, status) {
     state.loginStatus = status
   },
+  [types.LOGIN_TIP](state, bool) {
+    state.loginTip = bool
+    setTimeout(() => {
+        state.loginTip= false
+    },3000)
+  },
   [types.USER_ITEM](state, type) {
     state.userItem = type
   },

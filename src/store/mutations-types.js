@@ -10,6 +10,8 @@ export const TOPIC_DETAIL = 'TOPIC_DETAIL'
 export const LOGIN_INFO = 'LOGIN_INFO'
 //登录状态
 export const LOGIN_STATUS = 'LOGIN_STATUS'
+//登录成功提示
+export const LOGIN_TIP = 'LOGIN_TIP'
 //用户信息底部默认加载的选项
 export const USER_ITEM = 'USER_ITEM'
 //跳转到用户列表前的当前url

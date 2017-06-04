@@ -41,13 +41,13 @@
       </div>
     </div>
     <md-spinner md-indeterminate class="loading" v-show="loading"></md-spinner>
-    <mugen-scroll class="bottom-loading" :handler="fetchData" :should-handle="!mugen_loading">
+    <mugen-scroll class="bottom-loading" :handler="fetchMoreData" :should-handle="!mugen_loading">
       <md-spinner :md-size="30" md-indeterminate class="bottom"></md-spinner>
     </mugen-scroll>
     <transition name="fade">
       <button-icon :icon="'edit'" v-show="edit_show"></button-icon>
     </transition>
-    <div class="login-info" v-if="login_tip">登录成功</div>
+    <div class="login-info" v-if="loginTip">登录成功</div>
   </div>
 </template>
 
@@ -80,11 +80,6 @@
           this.$store.dispatch('loginInfo', local.get('loginInfo'))
           this.$store.dispatch('loginStatus', true)
         }
-        this.login_tip = this.loginStatus
-        setTimeout(() => {
-          this.login_tip = false
-        }, 3000)
-
 //        判断滚动方向
         scroll((direction) => {
           if (direction === 'down') {
@@ -122,7 +117,7 @@
           this.b_loading = true
         }
       },*/
-      fetchData() {
+      fetchMoreData() {
         this.mugen_loading = true
         this.$store.dispatch('loadPage')
         this.mugen_loading = false
@@ -167,7 +162,7 @@
     },
     computed: {
       ...mapState([
-        'tab', 'page', 'showTopic', 'loginStatus'
+        'tab', 'page', 'showTopic', 'loginStatus','loginTip'
       ])
     },
     watch: {

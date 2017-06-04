@@ -44,6 +44,7 @@
           this.$store.dispatch('loginInfo', res.data)
           local.set('loginInfo', res.data)
           this.$store.dispatch('loginStatus', true)
+          this.$store.dispatch('loginTip', true)
           this.$router.back(-1)
         }).catch(res => {
           this.errorInfo = res.response.data

@@ -15,6 +15,7 @@ const state = {
   topicDetail: '',
   loginInfo: {},
   loginStatus: false,
+  loginTip: false,
   userItem: 'reply',
   user_jump: ''
 }
