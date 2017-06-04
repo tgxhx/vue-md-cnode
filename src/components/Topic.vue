@@ -41,9 +41,9 @@
       </div>
     </div>
     <md-spinner md-indeterminate class="loading" v-show="loading"></md-spinner>
-    <div class="bottom-loading" v-show="b_loading">
+    <mugen-scroll class="bottom-loading" :handler="fetchData" :should-handle="!mugen_loading">
       <md-spinner :md-size="30" md-indeterminate class="bottom"></md-spinner>
-    </div>
+    </mugen-scroll>
     <transition name="fade">
       <button-icon :icon="'edit'" v-show="edit_show"></button-icon>
     </transition>
@@ -59,6 +59,7 @@
   import format from '../assets/js/format'
   import local from '../assets/js/local'
   import scroll from '../assets/js/scroll'
+  import MugenScroll from 'vue-mugen-scroll'
 
   export default {
     data() {
@@ -66,15 +67,15 @@
         url: 'https://cnodejs.org/api/v1/topics',
         list: [],
         loading: true,
-        b_loading: false,
         login_tip: false,
-        edit_show: true
+        edit_show: true,
+        mugen_loading: false
       }
     },
     mounted() {
       this.$nextTick(() => {
         this.getData('all')
-        window.addEventListener('scroll', this.more)
+//        window.addEventListener('scroll', this.more)
         if (local.get('loginInfo') != null) {
           this.$store.dispatch('loginInfo', local.get('loginInfo'))
           this.$store.dispatch('loginStatus', true)
@@ -83,6 +84,8 @@
         setTimeout(() => {
           this.login_tip = false
         }, 3000)
+
+//        判断滚动方向
         scroll((direction) => {
           if (direction === 'down') {
 //            setTimeout(() => {
@@ -110,7 +113,7 @@
       openDetail(id) {
         this.$store.dispatch('topicDetail', id)
       },
-      more() {
+      /*more() {
         let scrolled = document.documentElement.scrollTop || window.pageYOffset || document.body.scrollTop
         if (scrolled + window.screen.height >= (document.body.scrollHeight)) {
           this.$store.dispatch('loadPage')
@@ -118,6 +121,11 @@
         if (document.body.scrollTop >= 1000) {
           this.b_loading = true
         }
+      },*/
+      fetchData() {
+        this.mugen_loading = true
+        this.$store.dispatch('loadPage')
+        this.mugen_loading = false
       },
       showLoading(val) {
         this.loading = val
@@ -154,7 +162,8 @@
     },
     components: {
       SideNav,
-      ButtonIcon
+      ButtonIcon,
+      MugenScroll
     },
     computed: {
       ...mapState([
