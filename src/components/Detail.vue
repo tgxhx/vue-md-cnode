@@ -15,7 +15,10 @@
         <div class="user">
           <div class="user-l">
             <!--<img :src="obj.author.avatar_url" alt="">-->
-            <a href="#"><img alt=""></a>
+            <!--此处如果不使用新定义的author对象报错avatar_url未定义，原因未知-->
+              <router-link :to="'/user/' + author.loginname">
+                <img :src="author.avatar_url" alt="" @click="userJump">
+              </router-link>
             <div class="user-name">
               <p>
                 <span class="type type-top" v-if="obj.top">置顶</span>
@@ -24,13 +27,14 @@
                 <span class="type" v-else-if="obj.tab == 'ask'">问答</span>
                 <span class="type" v-else-if="obj.tab == 'job'">招聘</span>
                 <span v-else>分享</span>
-                <span class="name">123</span></p>
+                <!--此处如果不使用新定义的author对象报错loginname未定义-->
+                <span class="name">{{author.loginname}}</span></p>
               <p><span class="create-time">{{obj.create_at | time}}创建</span>
                 <span class="views">{{obj.visit_count}}次浏览</span></p>
             </div>
           </div>
           <div class="user-r">
-            <md-icon v-if="collect" @click.native="de_collectTopic">favorite</md-icon>
+            <md-icon v-if="collect" :class="{liked: collect}" @click.native="de_collectTopic">favorite</md-icon>
             <md-icon v-else @click.native="collectTopic">favorite_border</md-icon>
           </div>
         </div>
@@ -82,16 +86,19 @@
       return {
         url: 'https://cnodejs.org/api/v1/',
         obj: {},
+        author: {},
         loading: true,
         showDetail: false,
         collect: false,
         de_collect: true,
-        edit_show: true
+        edit_show: true,
+        collectList: []
       }
     },
     mounted() {
       this.$nextTick(() => {
         this.getDetail(this.$route.query.id)
+        this.getCollect()
         scroll((direction) => {
           if (direction === 'down') {
             setTimeout(() => {
@@ -109,9 +116,21 @@
       getDetail(id) {
         axios.get(`${this.url}topic/${id}`).then(res => {
           this.obj = res.data.data
+          this.author = res.data.data.author
           this.is_uped(this.obj.replies)
           this.loading = false
           this.showDetail = true
+        })
+      },
+      getCollect() {
+        axios.get(this.url + 'topic_collect/' + this.loginInfo.loginname).then(res => {
+          res.data.data.forEach(val => {
+            this.collectList.push(val.id)
+            this.collect = this.collectList.some(val => {
+//              console.log(`${val}---${this.topicDetail}`)
+              return val === this.topicDetail
+            })
+          })
         })
       },
       collectTopic(aaa) {
@@ -130,7 +149,7 @@
           this.collect = false
         })
       },
-//
+//      加载时点赞变色
       is_uped(replies) {
         replies.forEach((item) => {
           item.is_uped = item.ups.some(up => {
@@ -138,8 +157,9 @@
           })
         })
       },
+
       arrRemoveItem(arr, item) {
-        return arr.slice(0,arr.indexOf(item)).concat(arr.slice(arr.indexOf(item)+1,arr.length))
+        return arr.slice(0, arr.indexOf(item)).concat(arr.slice(arr.indexOf(item) + 1, arr.length))
       },
       likeUp(item) {
         axios.post(`${this.url}reply/${item.id}/ups`, {
@@ -178,7 +198,7 @@
     },
     computed: {
       ...mapState([
-        /*'topicDetail', */'loginInfo'
+        'topicDetail', 'loginInfo'
       ])
     },
     /*watch: {
@@ -274,6 +294,9 @@
       }
       .user-r {
         color: #888;
+        .liked {
+          color: $baseColor;
+        }
       }
     }
   }

@@ -114,6 +114,8 @@
       border-radius: pr(40);
       overflow: hidden;
       img {
+        display: block;
+        vertical-align: bottom;
         width: 100%;
         height: 100%;
       }
@@ -157,14 +159,14 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        width:100%;
-        height:100%;
-        font-size:pr(12);
+        width: 100%;
+        height: 100%;
+        font-size: pr(12);
         box-sizing: border-box;
         color: #ddd !important;
         &:hover {
           color: #fff !important;
-          border-bottom:pr(2) solid $baseColor;
+          border-bottom: pr(2) solid $baseColor;
         }
       }
     }
