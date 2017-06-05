@@ -75,6 +75,9 @@
       <transition  name="markdown-cover">
         <div class="edit-cover" v-show="markdown_show" @click="markdown_show = false"></div>
       </transition>
+      <transition name="markdown-btn">
+        <md-icon class="reply" v-show="markdown_show" @click.native="reply">send</md-icon>
+      </transition>
     </div>
     <md-spinner md-indeterminate class="loading" v-show="loading"></md-spinner>
     <button-icon :icon="'reply'" v-show="edit_show" @click.native="showMarkdown"></button-icon>
@@ -238,6 +241,16 @@
       },
       showMarkdown() {
         this.markdown_show = true
+      },
+      reply() {
+        axios.post(`${this.url}topic/${this.$route.query.id}/replies`, {
+          accesstoken: this.loginInfo.accesstoken,
+          content: this.edit_content
+        }).then(res => {
+          this.markdown_show = false
+          this.getDetail(this.$route.query.id)
+          this.edit_content = ''
+        })
       }
     },
     components: {
@@ -495,7 +508,7 @@
   }
 
   .editer-wrap {
-    /*position: relative;*/
+    position: relative;
     z-index: 20;
     .markdown-body {
       position: fixed;
@@ -513,16 +526,33 @@
       z-index:1499;
     }
     .markdown-cover-enter-active, .markdown-cover-leave-active {
-      transition: opacity .5s;
+      transition: opacity .3s;
     }
     .markdown-cover-enter, .markdown-cover-leave {
       opacity: 0;
     }
     .markdown-body-enter-active, .markdown-body-leave-active {
-      transition: bottom .5s;
+      transition: bottom .3s;
     }
     .markdown-body-enter, .markdown-body-leave {
       bottom: -300px;
+    }
+    .markdown-btn-enter-active {
+      transition: opacity .8s;
+    }
+    .markdown-btn-leave-active {
+      transition: opacity .5s;
+    }
+    .markdown-btn-enter, .markdown-btn-leave {
+      opacity: 0;
+    }
+    .reply {
+      position: fixed;
+      right:38px;
+      bottom:227px;
+      z-index:1501;
+      color: #757575;
+      font-size:20px;
     }
   }
 </style>
