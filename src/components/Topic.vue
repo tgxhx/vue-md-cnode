@@ -42,7 +42,7 @@
     </div>
     <md-spinner md-indeterminate class="loading" v-show="loading"></md-spinner>
     <mugen-scroll class="bottom-loading" :handler="fetchMoreData" :should-handle="!mugen_loading">
-      <md-spinner :md-size="30" md-indeterminate class="bottom"></md-spinner>
+      <md-spinner v-show="bottom_loading" :md-size="30" md-indeterminate class="bottom"></md-spinner>
     </mugen-scroll>
     <transition name="fade">
       <button-icon :icon="'edit'" v-show="edit_show"></button-icon>
@@ -69,7 +69,8 @@
         loading: true,
         login_tip: false,
         edit_show: true,
-        mugen_loading: false
+        mugen_loading: false,
+        bottom_loading: false
       }
     },
     mounted() {
@@ -80,6 +81,8 @@
           this.$store.dispatch('loginInfo', local.get('loginInfo'))
           this.$store.dispatch('loginStatus', true)
         }
+        //设置初始页数
+        this.$store.dispatch('loadPage',1)
 //        判断滚动方向
         scroll((direction) => {
           if (direction === 'down') {
@@ -102,6 +105,8 @@
         axios.get(`${this.url}?limit=20&tab=${tab}`).then(res => {
           this.list = res.data.data
           this.loading = false
+//          防止数据未加载完时显示底部圈
+          this.bottom_loading = true
           this.$store.dispatch('showTopic', true)
         })
       },
@@ -144,6 +149,8 @@
             return '问答'
           case 'job':
             return '招聘'
+          case 'dev':
+            return '测试'
           default:
             return 'CNode社区'
         }
@@ -210,6 +217,7 @@
     top: 0;
     right: 0;
     > .md-button {
+      transition: all 0s;
       a {
         color: #fff;
       }

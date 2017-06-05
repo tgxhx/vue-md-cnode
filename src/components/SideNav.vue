@@ -45,6 +45,10 @@
       <md-list-item @click.native="switchTab('job')">
         <md-icon md-theme="sidenav" class="md-warn">people</md-icon>
         <span>招聘</span>
+      </md-list-item>
+      <md-list-item @click.native="switchTab('dev')">
+        <md-icon md-theme="sidenav" class="md-warn">people</md-icon>
+        <span>测试</span>
         <md-divider class="md-inset"></md-divider>
       </md-list-item>
       <md-list-item>
@@ -60,7 +64,7 @@
         <span>关于</span>
       </md-list-item>
     </md-list>
-    <md-dialog md-open-from="#custom" md-close-to="#custom" ref="logout-dialog">
+    <md-dialog md-open-from="#custom" md-close-to="#custom" ref="logout-dialog" class="logout">
       <md-dialog-title>确定注销吗？</md-dialog-title>
       <md-dialog-actions>
         <md-button class="md-primary" @click.native="closeDialog('logout-dialog','cancel')">取消</md-button>
@@ -92,8 +96,8 @@
       this.$nextTick(() => {
         this.changeBg()
         /*if (local.get('loginInfo') != null) {
-          this.$store.dispatch('loginInfo', local.get('loginInfo'))
-        }*/
+         this.$store.dispatch('loginInfo', local.get('loginInfo'))
+         }*/
 
 //        this.$store.dispatch('loginStatus', true)
       })
@@ -128,7 +132,7 @@
           this.$store.dispatch('loginStatus', false)
           console.log('已注销')
         }
-       },
+      },
       userJump() {
         const url = window.location.href.split('#')[1]
         this.$store.dispatch('userJump', url)
@@ -169,12 +173,14 @@
     }
   }
 
-  .md-dialog {
-    min-width:pr(300);
-    .md-dialog-title {
-      font-size:pr(16);
-      margin-bottom:pr(10);
-      padding:pr(18) pr(24) 0;
+  .md-dialog-container.logout {
+    .md-dialog {
+      min-width: pr(300);
+      .md-dialog-title {
+        font-size: pr(14);
+        margin-bottom: pr(10);
+        padding: pr(18) pr(24) 0;
+      }
     }
   }
 </style>

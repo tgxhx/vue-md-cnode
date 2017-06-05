@@ -16,9 +16,9 @@
           <div class="user-l">
             <!--<img :src="obj.author.avatar_url" alt="">-->
             <!--此处如果不使用新定义的author对象报错avatar_url未定义，原因未知-->
-              <router-link :to="'/user/' + author.loginname">
-                <img :src="author.avatar_url" alt="" @click="userJump">
-              </router-link>
+            <router-link :to="'/user/' + author.loginname">
+              <img :src="author.avatar_url" alt="" @click="userJump">
+            </router-link>
             <div class="user-name">
               <p>
                 <span class="type type-top" v-if="obj.top">置顶</span>
@@ -35,7 +35,7 @@
           </div>
           <div class="user-r">
             <md-icon v-if="collect" :class="{liked: collect}" @click.native="de_collectTopic">favorite</md-icon>
-            <md-icon v-else @click.native="collectTopic">favorite_border</md-icon>
+            <md-icon v-else @click.native="collectTopic('login-dialog')">favorite_border</md-icon>
           </div>
         </div>
       </div>
@@ -70,6 +70,13 @@
     </div>
     <md-spinner md-indeterminate class="loading" v-show="loading"></md-spinner>
     <button-icon :icon="'reply'" v-show="edit_show"></button-icon>
+    <md-dialog md-open-from="#custom" md-close-to="#custom" ref="login-dialog" class="login">
+      <md-dialog-title>该操作需要登录账户，是否现在登录？</md-dialog-title>
+      <md-dialog-actions>
+        <md-button class="md-primary" @click.native="closeDialog('login-dialog','cancel')">取消</md-button>
+        <md-button class="md-primary" @click.native="closeDialog('login-dialog','ok')">登录</md-button>
+      </md-dialog-actions>
+    </md-dialog>
   </div>
 </template>
 
@@ -122,7 +129,10 @@
           this.showDetail = true
         })
       },
-      getCollect() {
+      getCollect(ref) {
+        if (!this.loginStatus) {
+          return
+        }
         axios.get(this.url + 'topic_collect/' + this.loginInfo.loginname).then(res => {
           res.data.data.forEach(val => {
             this.collectList.push(val.id)
@@ -133,7 +143,11 @@
           })
         })
       },
-      collectTopic(aaa) {
+      collectTopic(ref) {
+        if (!this.loginStatus) {
+          this.openDialog(ref)
+          return
+        }
         axios.post(`${this.url}topic_collect/collect`, {
           accesstoken: this.loginInfo.accesstoken,
           topic_id: this.$route.query.id
@@ -157,7 +171,6 @@
           })
         })
       },
-
       arrRemoveItem(arr, item) {
         return arr.slice(0, arr.indexOf(item)).concat(arr.slice(arr.indexOf(item) + 1, arr.length))
       },
@@ -180,7 +193,16 @@
       userJump() {
         const url = window.location.href.split('#')[1]
         this.$store.dispatch('userJump', url)
-      }
+      },
+      openDialog(ref) {
+        this.$refs[ref].open();
+      },
+      closeDialog(ref, type) {
+        this.$refs[ref].close();
+        if (type === 'ok') {
+          this.$router.push('/Login')
+        }
+      },
     },
     components: {
       SideNav,
@@ -198,7 +220,7 @@
     },
     computed: {
       ...mapState([
-        'topicDetail', 'loginInfo'
+        'topicDetail', 'loginInfo', 'loginStatus'
       ])
     },
     /*watch: {
@@ -423,5 +445,16 @@
     left: 50%;
     top: 25%;
     transform: translate(-50%, -50%);
+  }
+
+  .md-dialog-container.login {
+    .md-dialog {
+      min-width: pr(300);
+      .md-dialog-title {
+        font-size: pr(14);
+        margin-bottom: pr(10);
+        padding: pr(18) pr(24) 0;
+      }
+    }
   }
 </style>
