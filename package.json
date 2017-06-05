@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "axios": "^0.16.1",
+    "mavon-editor": "^1.6.2",
     "muse-ui": "^2.0.3",
     "vue": "^2.2.6",
     "vue-material": "^0.7.1",

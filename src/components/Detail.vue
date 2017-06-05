@@ -68,8 +68,16 @@
         </div>
       </div>
     </div>
+    <div class="editer-wrap">
+      <transition name="markdown-body">
+        <mavon-editor v-model="edit_content" v-show="markdown_show" :toolbars="toolbars" @keydown=""></mavon-editor>
+      </transition>
+      <transition  name="markdown-cover">
+        <div class="edit-cover" v-show="markdown_show" @click="markdown_show = false"></div>
+      </transition>
+    </div>
     <md-spinner md-indeterminate class="loading" v-show="loading"></md-spinner>
-    <button-icon :icon="'reply'" v-show="edit_show"></button-icon>
+    <button-icon :icon="'reply'" v-show="edit_show" @click.native="showMarkdown"></button-icon>
     <md-dialog md-open-from="#custom" md-close-to="#custom" ref="login-dialog" class="login">
       <md-dialog-title>该操作需要登录账户，是否现在登录？</md-dialog-title>
       <md-dialog-actions>
@@ -99,7 +107,32 @@
         collect: false,
         de_collect: true,
         edit_show: true,
-        collectList: []
+        collectList: [],
+        markdown_show: false,
+        edit_content: '',
+        toolbars: {
+          bold: true, // 粗体
+          italic: true, // 斜体
+          header: true, // 标题
+          underline: true, // 下划线
+          mark: true, // 标记
+          superscript: true, // 上角标
+          quote: true, // 引用
+          ol: true, // 有序列表
+          link: true, // 链接
+          imagelink: true, // 图片链接
+          help: true, // 帮助
+          code: true, // code
+          subfield: true, // 是否需要分栏
+          fullscreen: true, // 全屏编辑
+          readmodel: true, // 沉浸式阅读
+          /* 1.3.5 */
+          undo: true, // 上一步
+          trash: true, // 清空
+          save: true, // 保存（触发events中的save事件）
+          /* 1.4.2 */
+          navigation: true // 导航目录
+        }
       }
     },
     mounted() {
@@ -203,6 +236,9 @@
           this.$router.push('/Login')
         }
       },
+      showMarkdown() {
+        this.markdown_show = true
+      }
     },
     components: {
       SideNav,
@@ -455,6 +491,38 @@
         margin-bottom: pr(10);
         padding: pr(18) pr(24) 0;
       }
+    }
+  }
+
+  .editer-wrap {
+    /*position: relative;*/
+    z-index: 20;
+    .markdown-body {
+      position: fixed;
+      left:0;
+      bottom:0;
+      right:0;
+    }
+    .edit-cover {
+      position: fixed;
+      top:0;
+      left:0;
+      right:0;
+      bottom:0;
+      background-color: rgba(0,0,0, .5);
+      z-index:1499;
+    }
+    .markdown-cover-enter-active, .markdown-cover-leave-active {
+      transition: opacity .5s;
+    }
+    .markdown-cover-enter, .markdown-cover-leave {
+      opacity: 0;
+    }
+    .markdown-body-enter-active, .markdown-body-leave-active {
+      transition: bottom .5s;
+    }
+    .markdown-body-enter, .markdown-body-leave {
+      bottom: -300px;
     }
   }
 </style>

@@ -7,9 +7,12 @@ import axios from 'axios'
 import store from './store/index'
 import VueMaterial from 'vue-material'
 import format from './assets/js/format'
+import mavonEditor from 'mavon-editor'
+import 'mavon-editor/dist/css/index.css'
 
 Object.defineProperty(Vue.prototype, '$format', {value: format})
 
+Vue.use(mavonEditor)
 Vue.use(VueMaterial)
 Vue.material.registerTheme({
   default: {
@@ -39,7 +42,6 @@ Vue.material.registerTheme({
 })
 
 Vue.config.productionTip = false
-
 
 /* eslint-disable no-new */
 new Vue({
