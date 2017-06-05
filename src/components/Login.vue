@@ -9,14 +9,14 @@
       </md-toolbar>
     </div>
     <div class="login-panel" :class="{'login-focus': isTop}">
-      <label class="login-label" ref="label">Access Token:</label>
-      <input class="token" type="text" v-model="access_token" @focus="labelTop(true)" @blur="labelTop(false)">
-      <p v-show="!errorInfo.success">{{errorInfo.error_msg}}</p>
+      <label class="login-label" ref="label">输入Access Token登录</label>
+      <input class="token" :class="{'error-info-token': !errorInfo.success}" type="text" v-model="access_token" @focus="labelTop(true)" @blur="labelTop(false)">
+      <p class="error-info" v-show="!errorInfo.success">{{errorInfo.error_msg}}</p>
       <button class="login-btn" @click="login">登录</button>
-      <div class="login-option">
+      <!--<div class="login-option">
         <div class="qr-login"><i class="iconfont">&#xe698;</i>扫码登录</div>
         <div class="github-logi"><i class="iconfont">&#xe678;</i>GitHub登录</div>
-      </div>
+      </div>-->
     </div>
   </div>
 </template>
@@ -112,6 +112,11 @@
         transform: scale(0.85, 0.85) translateY(-(pr(20)));
       }
     }
+    .error-info {
+      margin-top:pr(5);
+      font-size:pr(12);
+      color: #f00;
+    }
     .login-label {
       position: absolute;
       font-size: pr(14);
@@ -133,6 +138,9 @@
       padding: pr(5) 0;
       border-bottom: 2px solid $baseColor;
       z-index: 1;
+      &.error-info-token {
+        border-bottom-color: #f00;
+      }
       &:focus {
         outline: none;
       }

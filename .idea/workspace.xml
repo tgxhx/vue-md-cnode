@@ -3,10 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="69cd4e4a-afc0-48c8-bf94-32dbdc8a3fc1" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/Detail.vue" afterPath="$PROJECT_DIR$/src/components/Detail.vue" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/Login.vue" afterPath="$PROJECT_DIR$/src/components/Login.vue" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/SideNav.vue" afterPath="$PROJECT_DIR$/src/components/SideNav.vue" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/Topic.vue" afterPath="$PROJECT_DIR$/src/components/Topic.vue" />
     </list>
     <ignored path="$PROJECT_DIR$/node_modules/" />
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -566,7 +563,7 @@
       <workItem from="1495937785114" duration="154000" />
       <workItem from="1496024979881" duration="601000" />
       <workItem from="1496199840114" duration="3798000" />
-      <workItem from="1496320639397" duration="44321000" />
+      <workItem from="1496320639397" duration="44381000" />
     </task>
     <task id="LOCAL-00001" summary="readme">
       <created>1496210828218</created>
@@ -631,11 +628,18 @@
       <option name="project" value="LOCAL" />
       <updated>1496570119756</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="新增测试标签">
+      <created>1496671730873</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1496671730873</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="169320000" />
+    <option name="totallyTimeSpent" value="169380000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -712,7 +716,8 @@
     <MESSAGE value="主题收藏按钮变色" />
     <MESSAGE value="无限滚动" />
     <MESSAGE value="登陆提示" />
-    <option name="LAST_COMMIT_MESSAGE" value="登陆提示" />
+    <MESSAGE value="新增测试标签" />
+    <option name="LAST_COMMIT_MESSAGE" value="新增测试标签" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
