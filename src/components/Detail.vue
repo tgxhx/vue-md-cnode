@@ -58,7 +58,7 @@
               </div>
             </div>
             <div class="user-r">
-              <md-icon @click.native="likeUp(item)" :class="{'active': item.is_uped}">thumb_up</md-icon>
+              <md-icon @click.native="likeUp(item, 'login-dialog')" :class="{'active': item.is_uped}">thumb_up</md-icon>
               <span class="thumb_up_count">{{item.ups.length}}</span>
               <md-icon>reply</md-icon>
             </div>
@@ -80,7 +80,7 @@
       </transition>
     </div>
     <md-spinner md-indeterminate class="loading" v-show="loading"></md-spinner>
-    <button-icon :icon="'reply'" v-show="edit_show" @click.native="showMarkdown"></button-icon>
+    <button-icon :icon="'reply'" v-show="edit_show" @click.native="showMarkdown('login-dialog')"></button-icon>
     <md-dialog md-open-from="#custom" md-close-to="#custom" ref="login-dialog" class="login">
       <md-dialog-title>该操作需要登录账户，是否现在登录？</md-dialog-title>
       <md-dialog-actions>
@@ -210,7 +210,11 @@
       arrRemoveItem(arr, item) {
         return arr.slice(0, arr.indexOf(item)).concat(arr.slice(arr.indexOf(item) + 1, arr.length))
       },
-      likeUp(item) {
+      likeUp(item,ref) {
+        if (!this.loginStatus) {
+          this.openDialog(ref)
+          return
+        }
         axios.post(`${this.url}reply/${item.id}/ups`, {
           accesstoken: this.loginInfo.accesstoken
         }).then(res => {
@@ -239,7 +243,11 @@
           this.$router.push('/Login')
         }
       },
-      showMarkdown() {
+      showMarkdown(ref) {
+        if (!this.loginStatus) {
+          this.openDialog(ref)
+          return
+        }
         this.markdown_show = true
       },
       reply() {

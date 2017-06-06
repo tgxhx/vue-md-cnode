@@ -45,7 +45,7 @@
       <md-spinner v-show="bottom_loading" :md-size="30" md-indeterminate class="bottom"></md-spinner>
     </mugen-scroll>
     <transition name="fade">
-      <button-icon :icon="'edit'" v-show="edit_show"></button-icon>
+      <button-icon :icon="'edit'" v-show="edit_show" @click.native="newTopic"></button-icon>
     </transition>
     <div class="login-info" v-if="loginTip">登录成功</div>
   </div>
@@ -134,6 +134,9 @@
       userJump() {
         const url = window.location.href.split('#')[1]
         this.$store.dispatch('userJump', url)
+      },
+      newTopic() {
+        this.$router.push('new')
       }
     },
     filters: {

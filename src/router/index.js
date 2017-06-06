@@ -5,6 +5,7 @@ import Detail from '../components/Detail'
 import Login from '../components/Login'
 import User from '../components/User'
 import UserReply from '../components/UserReply'
+import New from '../components/New'
 
 Vue.use(Router)
 
@@ -40,6 +41,11 @@ export default new Router({
           component: UserReply
         }
       ]
+    },
+    {
+      path: '/new',
+      name: 'New',
+      component: New
     }
   ]
 })
