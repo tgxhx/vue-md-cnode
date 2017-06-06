@@ -2,11 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="69cd4e4a-afc0-48c8-bf94-32dbdc8a3fc1" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/components/New.vue" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/Detail.vue" afterPath="$PROJECT_DIR$/src/components/Detail.vue" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/Topic.vue" afterPath="$PROJECT_DIR$/src/components/Topic.vue" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/router/index.js" afterPath="$PROJECT_DIR$/src/router/index.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/New.vue" afterPath="$PROJECT_DIR$/src/components/New.vue" />
     </list>
     <ignored path="$PROJECT_DIR$/node_modules/" />
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -43,8 +40,8 @@
           <file leaf-file-name="Detail.vue" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/components/Detail.vue">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="198">
-                  <caret line="9" column="17" lean-forward="true" selection-start-line="2" selection-start-column="4" selection-end-line="9" selection-end-column="17" />
+                <state relative-caret-position="1716">
+                  <caret line="137" column="9" lean-forward="true" selection-start-line="115" selection-start-column="8" selection-end-line="137" selection-end-column="9" />
                   <folding>
                     <element signature="e#4329#4364#0" expanded="true" />
                   </folding>
@@ -89,10 +86,11 @@
           <file leaf-file-name="New.vue" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/components/New.vue">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="506">
-                  <caret line="23" column="0" lean-forward="true" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
+                <state relative-caret-position="381">
+                  <caret line="25" column="21" lean-forward="false" selection-start-line="25" selection-start-column="21" selection-end-line="25" selection-end-column="21" />
                   <folding>
                     <element signature="n#style#0;n#h2#0;n#md-toolbar#0;n#div#0;n#template#0;n#!!top" expanded="true" />
+                    <element signature="e#2200#2591#0" expanded="false" />
                   </folding>
                 </state>
               </provider>
@@ -105,8 +103,8 @@
           <file leaf-file-name="mutations.js" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/store/mutations.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="729">
-                  <caret line="38" column="25" lean-forward="true" selection-start-line="38" selection-start-column="25" selection-end-line="38" selection-end-column="25" />
+                <state relative-caret-position="452">
+                  <caret line="25" column="39" lean-forward="true" selection-start-line="25" selection-start-column="39" selection-end-line="25" selection-end-column="39" />
                   <folding />
                 </state>
               </provider>
@@ -500,7 +498,7 @@
       <workItem from="1495937785114" duration="154000" />
       <workItem from="1496024979881" duration="601000" />
       <workItem from="1496199840114" duration="3798000" />
-      <workItem from="1496320639397" duration="55937000" />
+      <workItem from="1496320639397" duration="58324000" />
     </task>
     <task id="LOCAL-00001" summary="readme">
       <created>1496210828218</created>
@@ -593,11 +591,18 @@
       <option name="project" value="LOCAL" />
       <updated>1496679298416</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="新主题">
+      <created>1496761650788</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1496761650788</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="180936000" />
+    <option name="totallyTimeSpent" value="183323000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -610,7 +615,7 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.47071582" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.26436782" sideWeight="0.49525815" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2635575" sideWeight="0.49525815" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -678,7 +683,8 @@
     <MESSAGE value="修改登录方式" />
     <MESSAGE value="增加markdown编辑器" />
     <MESSAGE value="增加回复" />
-    <option name="LAST_COMMIT_MESSAGE" value="增加回复" />
+    <MESSAGE value="新主题" />
+    <option name="LAST_COMMIT_MESSAGE" value="新主题" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1051,16 +1057,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/store/mutations.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="729">
-          <caret line="38" column="25" lean-forward="true" selection-start-line="38" selection-start-column="25" selection-end-line="38" selection-end-column="25" />
+        <state relative-caret-position="452">
+          <caret line="25" column="39" lean-forward="true" selection-start-line="25" selection-start-column="39" selection-end-line="25" selection-end-column="39" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/components/Detail.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="9" column="17" lean-forward="true" selection-start-line="2" selection-start-column="4" selection-end-line="9" selection-end-column="17" />
+        <state relative-caret-position="1716">
+          <caret line="137" column="9" lean-forward="true" selection-start-line="115" selection-start-column="8" selection-end-line="137" selection-end-column="9" />
           <folding>
             <element signature="e#4329#4364#0" expanded="true" />
           </folding>
@@ -1069,10 +1075,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/components/New.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="506">
-          <caret line="23" column="0" lean-forward="true" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
+        <state relative-caret-position="381">
+          <caret line="25" column="21" lean-forward="false" selection-start-line="25" selection-start-column="21" selection-end-line="25" selection-end-column="21" />
           <folding>
             <element signature="n#style#0;n#h2#0;n#md-toolbar#0;n#div#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="e#2200#2591#0" expanded="false" />
           </folding>
         </state>
       </provider>
