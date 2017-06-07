@@ -1,8 +1,8 @@
 <template>
   <div class="detail-container">
     <md-toolbar id="md-toolbar">
-      <md-button class="md-icon-button"> <!--@click.native="back">-->
-        <router-link :to="'Topic'">
+      <md-button class="md-icon-button"><!-- @click.native="back">-->
+        <router-link :to="{path: backUrl}">
           <md-icon>arrow_back</md-icon>
         </router-link>
       </md-button>
@@ -111,6 +111,7 @@
         de_collect: true,
         edit_show: true,
         collectList: [],
+        backUrl: '',
         markdown_show: false,
         edit_content: '',
         toolbars: {
@@ -142,6 +143,7 @@
       this.$nextTick(() => {
         this.getDetail(this.$route.query.id)
         this.getCollect()
+        this.backUrl = this.detail_jump
         scroll((direction) => {
           if (direction === 'down') {
             setTimeout(() => {
@@ -277,7 +279,7 @@
     },
     computed: {
       ...mapState([
-        'topicDetail', 'loginInfo', 'loginStatus'
+        'topicDetail', 'loginInfo', 'loginStatus','detail_jump'
       ])
     },
     /*watch: {

@@ -16,3 +16,5 @@ export const LOGIN_TIP = 'LOGIN_TIP'
 export const USER_ITEM = 'USER_ITEM'
 //跳转到用户列表前的当前url
 export const USER_JUMP = 'USER_JUMP'
+//跳转到详情页前的当前url
+export const DETAIL_JUMP = 'DETAIL_JUMP'

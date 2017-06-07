@@ -9,8 +9,8 @@
     </md-toolbar>
     <side-nav ref="sidenav" @show-loading="showLoading"></side-nav>
     <div class="topic-list" v-show="showTopic">
-      <div class="cell" v-for="(item,index) in list" :data-href="item.id">
-        <router-link :to="{path:'detail',query:{id:item.id}}" @click.native="openDetail(item.id)">
+      <div class="cell" v-for="(item,index) in list" :data-href="item.id" @click="openDetail(item.id)">
+        <!--<router-link :to="{path:'detail',query:{id:item.id}}" @click.native="openDetail(item.id)">-->
           <div class="header">
             <span class="type-top" v-if="item.top">置顶</span>
             <span class="type-top" v-else-if="item.good">精华</span>
@@ -37,7 +37,7 @@
               <p>{{item.last_reply_at | time}}</p>
             </div>
           </div>
-        </router-link>
+        <!--</router-link>-->
       </div>
     </div>
     <md-spinner md-indeterminate class="loading" v-show="loading"></md-spinner>
@@ -45,9 +45,16 @@
       <md-spinner v-show="bottom_loading" :md-size="30" md-indeterminate class="bottom"></md-spinner>
     </mugen-scroll>
     <transition name="fade">
-      <button-icon :icon="'edit'" v-show="edit_show" @click.native="newTopic"></button-icon>
+      <button-icon :icon="'edit'" v-show="edit_show" @click.native="newTopic('login-dialog')"></button-icon>
     </transition>
     <div class="login-info" v-if="loginTip">登录成功</div>
+    <md-dialog md-open-from="#custom" md-close-to="#custom" ref="login-dialog" class="login">
+      <md-dialog-title>该操作需要登录账户，是否现在登录？</md-dialog-title>
+      <md-dialog-actions>
+        <md-button class="md-primary" @click.native="closeDialog('login-dialog','cancel')">取消</md-button>
+        <md-button class="md-primary" @click.native="closeDialog('login-dialog','ok')">登录</md-button>
+      </md-dialog-actions>
+    </md-dialog>
   </div>
 </template>
 
@@ -112,6 +119,10 @@
       },
       openDetail(id) {
         this.$store.dispatch('topicDetail', id)
+        const url = window.location.href.split('#')[1]
+        this.$store.dispatch('detailJump', url)
+
+        this.$router.push({path:'detail',query:{id:id}})
       },
       /*more() {
         let scrolled = document.documentElement.scrollTop || window.pageYOffset || document.body.scrollTop
@@ -135,9 +146,22 @@
         const url = window.location.href.split('#')[1]
         this.$store.dispatch('userJump', url)
       },
-      newTopic() {
+      newTopic(ref) {
+        if (!this.loginStatus) {
+          this.openDialog(ref)
+          return
+        }
         this.$router.push('new')
-      }
+      },
+      openDialog(ref) {
+        this.$refs[ref].open();
+      },
+      closeDialog(ref, type) {
+        this.$refs[ref].close();
+        if (type === 'ok') {
+          this.$router.push('/Login')
+        }
+      },
     },
     filters: {
       formatTitle(value) {

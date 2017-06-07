@@ -6,6 +6,7 @@ import Login from '../components/Login'
 import User from '../components/User'
 import UserReply from '../components/UserReply'
 import New from '../components/New'
+import Message from '../components/Message'
 
 Vue.use(Router)
 
@@ -46,6 +47,11 @@ export default new Router({
       path: '/new',
       name: 'New',
       component: New
+    },
+    {
+      path: '/message',
+      name: 'Message',
+      component: Message
     }
   ]
 })

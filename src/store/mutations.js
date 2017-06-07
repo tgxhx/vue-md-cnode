@@ -37,5 +37,8 @@ export default {
   },
   [types.USER_JUMP](state, url) {
     state.user_jump = url
+  },
+  [types.DETAIL_JUMP](state,url) {
+    state.detail_jump = url
   }
 }

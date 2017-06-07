@@ -52,10 +52,12 @@
         <md-divider class="md-inset"></md-divider>
       </md-list-item>
       <md-list-item>
-        <md-icon class="md-accent">notifications</md-icon>
-        <span>消息</span>
+        <router-link to="message">
+          <md-icon class="md-accent">notifications</md-icon>
+          <span>消息</span>
+        </router-link>
       </md-list-item>
-      <md-list-item>
+      <md-list-item >
         <md-icon md-theme="sidenav" class="md-primary">settings</md-icon>
         <span>设置</span>
       </md-list-item>

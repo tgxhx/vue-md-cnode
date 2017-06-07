@@ -27,5 +27,8 @@ export default {
   },
   userJump({commit}, url) {
     commit(types.USER_JUMP, url)
+  },
+  detailJump({commit}, url) {
+    commit(types.DETAIL_JUMP, url)
   }
 }
