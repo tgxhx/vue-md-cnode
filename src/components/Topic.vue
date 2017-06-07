@@ -11,32 +11,32 @@
     <div class="topic-list" v-show="showTopic">
       <div class="cell" v-for="(item,index) in list" :data-href="item.id" @click="openDetail(item.id)">
         <!--<router-link :to="{path:'detail',query:{id:item.id}}" @click.native="openDetail(item.id)">-->
-          <div class="header">
-            <span class="type-top" v-if="item.top">置顶</span>
-            <span class="type-top" v-else-if="item.good">精华</span>
-            <span v-else-if="item.tab == 'share'">分享</span>
-            <span v-else-if="item.tab == 'ask'">问答</span>
-            <span v-else-if="item.tab == 'job'">招聘</span>
-            <span v-else>分享</span>
-            <h3>{{item.title}}</h3>
-          </div>
-          <div class="content">
-            <div class="user-info">
-              <!--<router-link :to="{path: 'user', query:{name:item.author.loginname}}">-->
-              <router-link :to="'user/' + item.author.loginname">
-                <img :src="item.author.avatar_url" alt="" @click="userJump">
-              </router-link>
-              <div class="user-name">
-                <span>{{item.author.loginname}}</span>
-                <p>创建于：{{item.create_at | createTime}}</p>
-              </div>
+        <div class="header">
+          <span class="type-top" v-if="item.top">置顶</span>
+          <span class="type-top" v-else-if="item.good">精华</span>
+          <span v-else-if="item.tab == 'share'">分享</span>
+          <span v-else-if="item.tab == 'ask'">问答</span>
+          <span v-else-if="item.tab == 'job'">招聘</span>
+          <span v-else>分享</span>
+          <h3>{{item.title}}</h3>
+        </div>
+        <div class="content">
+          <div class="user-info">
+            <!--<router-link :to="{path: 'user', query:{name:item.author.loginname}}">-->
+            <router-link :to="'user/' + item.author.loginname">
+              <img :src="item.author.avatar_url" alt="" @click="userJump">
+            </router-link>
+            <div class="user-name">
+              <span>{{item.author.loginname}}</span>
+              <p>创建于：{{item.create_at | createTime}}</p>
             </div>
-            <div class="replies">
+          </div>
+          <div class="replies">
             <span><span class="reply">{{item.reply_count}}</span> /
               <span class="view">{{item.visit_count}}</span></span>
-              <p>{{item.last_reply_at | time}}</p>
-            </div>
+            <p>{{item.last_reply_at | time}}</p>
           </div>
+        </div>
         <!--</router-link>-->
       </div>
     </div>
@@ -44,8 +44,8 @@
     <mugen-scroll class="bottom-loading" :handler="fetchMoreData" :should-handle="!mugen_loading">
       <md-spinner v-show="bottom_loading" :md-size="30" md-indeterminate class="bottom"></md-spinner>
     </mugen-scroll>
-    <transition name="fade">
-      <button-icon :icon="'edit'" v-show="edit_show" @click.native="newTopic('login-dialog')"></button-icon>
+    <transition name="fade-btn">
+      <button-icon :icon="'edit'" v-show="edit_show" @click.native="newTopic('login-dialog')" ref="edit_btn"></button-icon>
     </transition>
     <div class="login-info" v-if="loginTip">登录成功</div>
     <md-dialog md-open-from="#custom" md-close-to="#custom" ref="login-dialog" class="login">
@@ -89,13 +89,13 @@
           this.$store.dispatch('loginStatus', true)
         }
         //设置初始页数
-        this.$store.dispatch('loadPage',1)
+        this.$store.dispatch('loadPage', 1)
 //        判断滚动方向
         scroll((direction) => {
           if (direction === 'down') {
-//            setTimeout(() => {
+            setTimeout(() => {
             this.edit_show = false
-//            },200)
+            },200)
           } else {
             setTimeout(() => {
               this.edit_show = true
@@ -122,17 +122,17 @@
         const url = window.location.href.split('#')[1]
         this.$store.dispatch('detailJump', url)
 
-        this.$router.push({path:'detail',query:{id:id}})
+        this.$router.push({path: 'detail', query: {id: id}})
       },
       /*more() {
-        let scrolled = document.documentElement.scrollTop || window.pageYOffset || document.body.scrollTop
-        if (scrolled + window.screen.height >= (document.body.scrollHeight)) {
-          this.$store.dispatch('loadPage')
-        }
-        if (document.body.scrollTop >= 1000) {
-          this.b_loading = true
-        }
-      },*/
+       let scrolled = document.documentElement.scrollTop || window.pageYOffset || document.body.scrollTop
+       if (scrolled + window.screen.height >= (document.body.scrollHeight)) {
+       this.$store.dispatch('loadPage')
+       }
+       if (document.body.scrollTop >= 1000) {
+       this.b_loading = true
+       }
+       },*/
       fetchMoreData() {
         this.mugen_loading = true
         this.$store.dispatch('loadPage')
@@ -196,7 +196,7 @@
     },
     computed: {
       ...mapState([
-        'tab', 'page', 'showTopic', 'loginStatus','loginTip'
+        'tab', 'page', 'showTopic', 'loginStatus', 'loginTip'
       ])
     },
     watch: {
@@ -364,12 +364,13 @@
     transition: all .5s;
   }
 
-  .fade-enter-active, .fade-leave-active {
+  .fade-btn-enter-active, .fade-btn-leave-active {
     transition: all .5s;
   }
 
-  .fade-enter, .fade-leave-active {
-    opacity: 0;
+  .fade-btn-enter, .fade-btn-leave-active {
+    /*opacity: 0;*/
+    opacity:0;
   }
 
 </style>

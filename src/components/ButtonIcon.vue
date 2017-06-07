@@ -1,5 +1,5 @@
 <template>
-  <div class="edit-btn">
+  <div class="edit-btn" ref="edit_btn">
     <md-icon>{{icon}}</md-icon>
   </div>
 </template>
@@ -23,5 +23,6 @@
     border-radius: pr(25);
     background-color: $baseColor;
     color: #fff;
+    transition: all .5s;
   }
 </style>
