@@ -27,6 +27,7 @@ export default {
     state.loginStatus = status
   },
   [types.LOGIN_TIP](state, bool) {
+    //登陆成功提示，三秒后消失
     state.loginTip = bool
     setTimeout(() => {
         state.loginTip= false

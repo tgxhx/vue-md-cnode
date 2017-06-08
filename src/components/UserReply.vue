@@ -45,6 +45,7 @@
       }
     },
     methods: {
+//      获取最新回复和最新发表
       getData(id, type) {
         axios.get(this.url + 'user/' + id).then(res => {
           if (type === 'reply') {
@@ -54,6 +55,7 @@
           }
         })
       },
+//      获取收藏列表
       getCollect(id) {
         axios.get(this.url + 'topic_collect/' + id).then(res => {
           this.list = res.data.data
@@ -69,6 +71,7 @@
       ])
     },
     watch: {
+//      监听子路由的变化，并获取不同的数据
       $route(to, from) {
         this.msg = to.params.type
         if (to.params.type === 'reply') {

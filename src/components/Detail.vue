@@ -17,7 +17,7 @@
             <!--<img :src="obj.author.avatar_url" alt="">-->
             <!--此处如果不使用新定义的author对象报错avatar_url未定义，原因未知-->
             <router-link :to="'/user/' + author.loginname">
-              <img :src="author.avatar_url" alt="" @click="userJump">
+              <img :src="author.avatar_url" alt="" @click>
             </router-link>
             <div class="user-name">
               <p>
@@ -161,12 +161,14 @@
       getDetail(id) {
         axios.get(`${this.url}topic/${id}`).then(res => {
           this.obj = res.data.data
+//        不用本地变量保存会提示author下的属性为undefined
           this.author = res.data.data.author
           this.is_uped(this.obj.replies)
           this.loading = false
           this.showDetail = true
         })
       },
+//      获取用户收藏主题，再判断当前主题是否已收藏
       getCollect(ref) {
         if (!this.loginStatus) {
           return
@@ -181,6 +183,7 @@
           })
         })
       },
+//      收藏主题
       collectTopic(ref) {
         if (!this.loginStatus) {
           this.openDialog(ref)
@@ -193,6 +196,7 @@
           this.collect = true
         })
       },
+//      取消收藏主题
       de_collectTopic() {
         axios.post(`${this.url}topic_collect/de_collect`, {
           accesstoken: this.loginInfo.accesstoken,
@@ -212,6 +216,7 @@
       arrRemoveItem(arr, item) {
         return arr.slice(0, arr.indexOf(item)).concat(arr.slice(arr.indexOf(item) + 1, arr.length))
       },
+//      回复点赞或取消点赞
       likeUp(item,ref) {
         if (!this.loginStatus) {
           this.openDialog(ref)
@@ -232,6 +237,7 @@
       back() {
         this.$router.back(-1)
       },
+      //跳转到用户中心，保存跳转前url
       userJump() {
         const url = window.location.href.split('#')[1]
         this.$store.dispatch('userJump', url)
@@ -245,6 +251,7 @@
           this.$router.push('/Login')
         }
       },
+//      显示markdown编辑器
       showMarkdown(ref) {
         if (!this.loginStatus) {
           this.openDialog(ref)
@@ -252,6 +259,7 @@
         }
         this.markdown_show = true
       },
+//      回复当前主题
       reply() {
         axios.post(`${this.url}topic/${this.$route.query.id}/replies`, {
           accesstoken: this.loginInfo.accesstoken,

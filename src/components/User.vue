@@ -20,7 +20,7 @@
         <a :href="'https:/\/github.com/' + user.loginname" target="_blank">{{user.loginname}}@github.com</a>
       </div>
       <div class="reg-info">
-        <span class="reg-time">注册时间：{{user.create_at | regTime}}</span>
+        <span class="reg-time">注册时间：{{createTime | regTime}}</span>
         <span class="score">积分：{{user.score}}</span>
       </div>
     </div>
@@ -54,7 +54,8 @@
       return {
         url: 'https://cnodejs.org/api/v1/user/',
         user: {},
-        backUrl: ''
+        backUrl: '',
+        createTime: ''
       }
     },
     mounted() {
@@ -63,7 +64,7 @@
     },
     filters: {
       regTime(value) {
-//          return value.substr(0,10)
+          return value.substring(0,10)
       }
     },
     methods: {
@@ -73,6 +74,8 @@
       getData(name) {
         axios.get(this.url + name).then(res => {
           this.user = res.data.data
+//          此处跟detail组件中author的属性一样需要本地变量保存，否则虽然数据能渲染出来但是会提示filter中的substring为undefined，原因暂时未知
+          this.createTime = this.user.create_at
         })
       },
       userItem(type) {

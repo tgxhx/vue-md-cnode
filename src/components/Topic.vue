@@ -24,7 +24,7 @@
           <div class="user-info">
             <!--<router-link :to="{path: 'user', query:{name:item.author.loginname}}">-->
             <router-link :to="'user/' + item.author.loginname">
-              <img :src="item.author.avatar_url" alt="" @click="userJump">
+              <img :src="item.author.avatar_url" alt="" @click.stop="userJump">
             </router-link>
             <div class="user-name">
               <span>{{item.author.loginname}}</span>
@@ -40,13 +40,17 @@
         <!--</router-link>-->
       </div>
     </div>
+    <!--加载时圆圈-->
     <md-spinner md-indeterminate class="loading" v-show="loading"></md-spinner>
     <mugen-scroll class="bottom-loading" :handler="fetchMoreData" :should-handle="!mugen_loading">
+      <!--到底部时加载圆圈-->
       <md-spinner v-show="bottom_loading" :md-size="30" md-indeterminate class="bottom"></md-spinner>
     </mugen-scroll>
     <transition name="fade-btn">
+      <!--底部新增主题按钮-->
       <button-icon :icon="'edit'" v-show="edit_show" @click.native="newTopic('login-dialog')" ref="edit_btn"></button-icon>
     </transition>
+    <!--登录成功提示，三秒后消失-->
     <div class="login-info" v-if="loginTip">登录成功</div>
     <md-dialog md-open-from="#custom" md-close-to="#custom" ref="login-dialog" class="login">
       <md-dialog-title>该操作需要登录账户，是否现在登录？</md-dialog-title>
@@ -82,7 +86,7 @@
     },
     mounted() {
       this.$nextTick(() => {
-        this.getData('all')
+        this.getData(this.$route.query.id)
 //        window.addEventListener('scroll', this.more)
         if (local.get('loginInfo') != null) {
           this.$store.dispatch('loginInfo', local.get('loginInfo'))
@@ -135,17 +139,21 @@
        },*/
       fetchMoreData() {
         this.mugen_loading = true
+        //滚动到底获取新一页
         this.$store.dispatch('loadPage')
         this.mugen_loading = false
       },
+      //子组件sideNave的自定义事件
       showLoading(val) {
         this.loading = val
-//        console.log(1)
+        console.log(1)
       },
+      //跳转到用户中心，保存跳转前url
       userJump() {
         const url = window.location.href.split('#')[1]
         this.$store.dispatch('userJump', url)
       },
+      //打开新增主题组件
       newTopic(ref) {
         if (!this.loginStatus) {
           this.openDialog(ref)

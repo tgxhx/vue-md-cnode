@@ -110,6 +110,7 @@
           return
         }
         this.$store.dispatch('switchTab', tab)
+        this.$router.push({path: 'topic',query: {tab: tab}})
         this.$store.dispatch('loadPage', 1)
         this.$store.dispatch('showTopic', false)
         this.$emit('show-loading', true)
