@@ -1,5 +1,6 @@
 # vue-cnode社区
 
+预览地址：[点此查看](http://39.108.14.248/node)
 
 > 基于vue全家桶的Material Design风格Cnode社区
   
