@@ -1,14 +1,18 @@
-# vue-cnode
+# vue-cnode社区
+
 
 > 基于vue全家桶的Material Design风格Cnode社区
   
 >  尽量接近原生App的Material Design风格，参考了Google Play，Cnode的Android客户端。
   
->  使用了[vue-material](https://github.com/vuematerial/vue-material)组件库
+##技术栈
+vue2 + vue-router2 + vuex + es6 + webpack + axios + scss + flex + [vue-material](https://github.com/vuematerial/vue-material)
 
 ## Build Setup
 
 ``` bash
+git clone git@github.com:tgxhx/vue-cnode.git
+
 # install dependencies
 npm install
 
@@ -22,5 +26,19 @@ npm run build
 npm run build --report
 ```
 
-For detailed explanation on how things work, checkout the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
-
+##功能
+- [x] 登录
+- [x] 保存登录
+- [x] 注销 
+- [x] 切换分类
+- [x] 主题列表
+- [x] 主题详情
+- [x] 滚动加载
+- [x] 发帖
+- [x] 回复
+- [ ] 回复某人
+- [x] 收藏
+- [x] 点赞
+- [x] 个人中心 
+- [x] 消息 
+- [x] 移动端适配 

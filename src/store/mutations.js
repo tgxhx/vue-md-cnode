@@ -40,6 +40,6 @@ export default {
     state.user_jump = url
   },
   [types.DETAIL_JUMP](state,url) {
-    state.detail_jump = url
+    state.detail_jump = url || '/topic'
   }
 }

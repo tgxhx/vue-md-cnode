@@ -98,6 +98,7 @@
   import {mapState} from 'vuex'
   import format from '../assets/js/format'
   import scroll from '../assets/js/scroll'
+  import local from '../assets/js/local'
 
   export default {
     data() {
@@ -136,7 +137,8 @@
           save: true, // 保存（触发events中的save事件）
           /* 1.4.2 */
           navigation: true // 导航目录
-        }
+        },
+        reply_tail: '来自[VueCnodeMD](https://github.com/tgxhx/vue-cnode)'
       }
     },
     mounted() {
@@ -144,6 +146,11 @@
         this.getDetail(this.$route.query.id)
         this.getCollect()
         this.backUrl = this.detail_jump
+
+        if (local.get('loginInfo') != null) {
+          this.$store.dispatch('loginInfo', local.get('loginInfo'))
+          this.$store.dispatch('loginStatus', true)
+        }
         scroll((direction) => {
           if (direction === 'down') {
             setTimeout(() => {
@@ -263,7 +270,7 @@
       reply() {
         axios.post(`${this.url}topic/${this.$route.query.id}/replies`, {
           accesstoken: this.loginInfo.accesstoken,
-          content: this.edit_content
+          content: `${this.edit_content}\n${this.reply_tail}`
         }).then(res => {
           this.markdown_show = false
           this.getDetail(this.$route.query.id)
@@ -413,7 +420,7 @@
       line-height: 1.5;
       margin-bottom: pr(5);
     }
-    h3 {
+    h3,h4,h5 {
       font-size: pr(20);
       line-height: 1.5;
       margin-bottom: pr(5);

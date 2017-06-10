@@ -17,8 +17,8 @@ const state = {
   loginStatus: false,
   loginTip: false,
   userItem: 'reply',
-  user_jump: '',
-  detail_jump: ''
+  user_jump: '' || '/topic',
+  detail_jump: '' || '/topic',
 }
 
 export default new Vuex.Store({
