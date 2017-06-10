@@ -146,7 +146,6 @@
         this.getDetail(this.$route.query.id)
         this.getCollect()
         this.backUrl = this.detail_jump
-
         if (local.get('loginInfo') != null) {
           this.$store.dispatch('loginInfo', local.get('loginInfo'))
           this.$store.dispatch('loginStatus', true)
@@ -434,11 +433,23 @@
       list-style-type: disc;
       margin-left: pr(20);
     }
-    code, a {
+    a {
       color: dodgerblue !important;
     }
+    blockquote {
+      border-left:3px solid #dfdfdf;
+      padding-left:pr(15);
+    }
+    pre {
+      overflow-x: auto;
+      background-color: #eee;
+      padding:pr(15);
+    }
     code {
+      width:100%;
+      overflow-x: auto;
       font-size: pr(14);
+      color: #888 !important;
       background-color: rgba(128, 186, 255, 0.2) !important;
     }
   }
@@ -510,6 +521,15 @@
         padding-top: pr(5);
         font-size: pr(14px);
         line-height: 1.5;
+        .markdown-text {
+          p {
+            a {
+              overflow: hidden;
+              width: 100%;
+              display: inline-block;
+            }
+          }
+        }
       }
     }
   }

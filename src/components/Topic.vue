@@ -92,6 +92,7 @@
           this.$store.dispatch('loginInfo', local.get('loginInfo'))
           this.$store.dispatch('loginStatus', true)
         }
+        document.body.scrollTop = 0
         //设置初始页数
         this.$store.dispatch('loadPage', 1)
 //        判断滚动方向
