@@ -30,6 +30,11 @@
         url: 'https://cnodejs.org/api/v1/'
       }
     },
+    computed: {
+      ...mapState([
+        'userItem'
+      ])
+    },
     mounted() {
       this.$nextTick(() => {
         if (this.userItem !== 'collect') {
@@ -64,11 +69,6 @@
       openDetail(id) {
         this.$store.dispatch('topicDetail', id)
       }
-    },
-    computed: {
-      ...mapState([
-        'userItem'
-      ])
     },
     watch: {
 //      监听子路由的变化，并获取不同的数据

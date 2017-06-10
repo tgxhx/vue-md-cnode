@@ -57,7 +57,7 @@
           <span>消息</span>
         </router-link>
       </md-list-item>
-      <md-list-item >
+      <md-list-item>
         <md-icon md-theme="sidenav" class="md-primary">settings</md-icon>
         <span>设置</span>
       </md-list-item>
@@ -94,6 +94,11 @@
         }
       }
     },
+    computed: {
+      ...mapState([
+        'loginInfo', 'loginStatus'
+      ])
+    },
     mounted() {
       this.$nextTick(() => {
         this.changeBg()
@@ -110,7 +115,7 @@
           return
         }
         this.$store.dispatch('switchTab', tab)
-        this.$router.push({path: 'topic',query: {tab: tab}})
+        this.$router.push({path: 'topic', query: {tab: tab}})
         this.$store.dispatch('loadPage', 1)
         this.$store.dispatch('showTopic', false)
         this.$emit('show-loading', true)
@@ -140,11 +145,6 @@
         const url = window.location.href.split('#')[1]
         this.$store.dispatch('userJump', url)
       }
-    },
-    computed: {
-      ...mapState([
-        'loginInfo', 'loginStatus'
-      ])
     }
   }
 </script>

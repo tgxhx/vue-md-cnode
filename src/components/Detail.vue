@@ -72,7 +72,7 @@
       <transition name="markdown-body">
         <mavon-editor v-model="edit_content" v-show="markdown_show" :toolbars="toolbars" @keydown=""></mavon-editor>
       </transition>
-      <transition  name="markdown-cover">
+      <transition name="markdown-cover">
         <div class="edit-cover" v-show="markdown_show" @click="markdown_show = false"></div>
       </transition>
       <transition name="markdown-btn">
@@ -141,10 +141,17 @@
         reply_tail: '来自[VueCnodeMD](https://github.com/tgxhx/vue-cnode)'
       }
     },
+    computed: {
+      ...mapState([
+        'topicDetail', 'loginInfo', 'loginStatus', 'detail_jump'
+      ])
+    },
+    created() {
+      this.getDetail(this.$route.query.id)
+      this.getCollect()
+    },
     mounted() {
       this.$nextTick(() => {
-        this.getDetail(this.$route.query.id)
-        this.getCollect()
         this.backUrl = this.detail_jump
         if (local.get('loginInfo') != null) {
           this.$store.dispatch('loginInfo', local.get('loginInfo'))
@@ -223,7 +230,7 @@
         return arr.slice(0, arr.indexOf(item)).concat(arr.slice(arr.indexOf(item) + 1, arr.length))
       },
 //      回复点赞或取消点赞
-      likeUp(item,ref) {
+      likeUp(item, ref) {
         if (!this.loginStatus) {
           this.openDialog(ref)
           return
@@ -290,12 +297,7 @@
           return item === this.loginInfo.id
         })
       }
-    },
-    computed: {
-      ...mapState([
-        'topicDetail', 'loginInfo', 'loginStatus','detail_jump'
-      ])
-    },
+    }
     /*watch: {
      topicDetail(val, oldVal) {
      this.getDetail(val)
@@ -419,7 +421,7 @@
       line-height: 1.5;
       margin-bottom: pr(5);
     }
-    h3,h4,h5 {
+    h3, h4, h5 {
       font-size: pr(20);
       line-height: 1.5;
       margin-bottom: pr(5);
@@ -437,16 +439,16 @@
       color: dodgerblue !important;
     }
     blockquote {
-      border-left:3px solid #dfdfdf;
-      padding-left:pr(15);
+      border-left: 3px solid #dfdfdf;
+      padding-left: pr(15);
     }
     pre {
       overflow-x: auto;
       background-color: #eee;
-      padding:pr(15);
+      padding: pr(15);
     }
     code {
-      width:100%;
+      width: 100%;
       overflow-x: auto;
       font-size: pr(14);
       color: #888 !important;
@@ -557,18 +559,18 @@
     z-index: 20;
     .markdown-body {
       position: fixed;
-      left:0;
-      bottom:0;
-      right:0;
+      left: 0;
+      bottom: 0;
+      right: 0;
     }
     .edit-cover {
       position: fixed;
-      top:0;
-      left:0;
-      right:0;
-      bottom:0;
-      background-color: rgba(0,0,0, .5);
-      z-index:1499;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: rgba(0, 0, 0, .5);
+      z-index: 1499;
     }
     .markdown-cover-enter-active, .markdown-cover-leave-active {
       transition: opacity .3s;
@@ -593,11 +595,11 @@
     }
     .reply {
       position: fixed;
-      right:38px;
-      bottom:227px;
-      z-index:1501;
+      right: 38px;
+      bottom: 227px;
+      z-index: 1501;
       color: #757575;
-      font-size:20px;
+      font-size: 20px;
     }
   }
 </style>

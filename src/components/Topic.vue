@@ -48,7 +48,8 @@
     </mugen-scroll>
     <transition name="fade-btn">
       <!--底部新增主题按钮-->
-      <button-icon :icon="'edit'" v-show="edit_show" @click.native="newTopic('login-dialog')" ref="edit_btn"></button-icon>
+      <button-icon :icon="'edit'" v-show="edit_show" @click.native="newTopic('login-dialog')"
+                   ref="edit_btn"></button-icon>
     </transition>
     <!--登录成功提示，三秒后消失-->
     <div class="login-info" v-if="loginTip">登录成功</div>
@@ -81,26 +82,37 @@
         login_tip: false,
         edit_show: true,
         mugen_loading: false,
-        bottom_loading: false
+        bottom_loading: false,
       }
+    },
+    computed: {
+      ...mapState([
+        'tab', 'page', 'showTopic', 'loginStatus', 'loginTip'
+      ])
+    },
+    created() {
+      console.log(this.$route.query)
     },
     mounted() {
       this.$nextTick(() => {
-        this.getData(this.$route.query.id)
+        this.getData(this.$route.query.tab || 'all')
 //        window.addEventListener('scroll', this.more)
+
+        //设置初始页数
+        this.$store.dispatch('loadPage', 1)
+
         if (local.get('loginInfo') != null) {
           this.$store.dispatch('loginInfo', local.get('loginInfo'))
           this.$store.dispatch('loginStatus', true)
         }
         document.body.scrollTop = 0
-        //设置初始页数
-        this.$store.dispatch('loadPage', 1)
+
 //        判断滚动方向
         scroll((direction) => {
           if (direction === 'down') {
             setTimeout(() => {
-            this.edit_show = false
-            },200)
+              this.edit_show = false
+            }, 200)
           } else {
             setTimeout(() => {
               this.edit_show = true
@@ -142,6 +154,7 @@
         this.mugen_loading = true
         //滚动到底获取新一页
         this.$store.dispatch('loadPage')
+        //
         this.mugen_loading = false
       },
       //子组件sideNave的自定义事件
@@ -203,17 +216,17 @@
       ButtonIcon,
       MugenScroll
     },
-    computed: {
-      ...mapState([
-        'tab', 'page', 'showTopic', 'loginStatus', 'loginTip'
-      ])
-    },
     watch: {
       tab(val, oldVal) {
         this.getData(val)
+        console.log(this.$route)
 //        this.$store.dispatch('showTopic', true)
       },
       page(val, oldVal) {
+        if (val === 1) {
+          return
+        }
+//       页面加载是会获取两次是因为滚动组件的问题，自动提交action让page加1
         axios.get(`${this.url}?limit=20&tab=${this.tab}&page=${val}`).then(res => {
           this.list = this.list.concat(res.data.data)
         })
@@ -379,7 +392,7 @@
 
   .fade-btn-enter, .fade-btn-leave-active {
     /*opacity: 0;*/
-    opacity:0;
+    opacity: 0;
   }
 
 </style>

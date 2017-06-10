@@ -58,8 +58,10 @@
         createTime: ''
       }
     },
-    mounted() {
+    created() {
       this.getData(this.$route.params.id)
+    },
+    mounted() {
       this.backUrl = this.user_jump
     },
     filters: {

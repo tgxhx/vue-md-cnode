@@ -47,9 +47,17 @@
         notReadMsgList: []
       }
     },
+    computed: {
+      ...mapState([
+        'loginInfo'
+      ])
+    },
+    created() {
+      this.getMessage()
+    },
     mounted() {
       this.$nextTick(() => {
-        this.getMessage()
+
       })
     },
     methods: {
@@ -75,11 +83,6 @@
       time(value) {
         return format.formatMsgTime(format.getTimeStamp(value))
       }
-    },
-    computed: {
-      ...mapState([
-        'loginInfo'
-      ])
     }
   }
 </script>

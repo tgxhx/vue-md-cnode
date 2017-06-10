@@ -10,7 +10,8 @@
     </div>
     <div class="login-panel" :class="{'login-focus': isTop}">
       <label class="login-label" ref="label">输入Access Token登录</label>
-      <input class="token" :class="{'error-info-token': !errorInfo.success}" type="text" v-model="access_token" @focus="labelTop(true)" @blur="labelTop(false)">
+      <input class="token" :class="{'error-info-token': !errorInfo.success}" type="text" v-model="access_token"
+             @focus="labelTop(true)" @blur="labelTop(false)">
       <p class="error-info" v-show="!errorInfo.success">{{errorInfo.error_msg}}</p>
       <button class="login-btn" @click="login">登录</button>
       <!--<div class="login-option">
@@ -34,6 +35,11 @@
         isTop: false
       }
     },
+    computed: {
+      ...mapState([
+        'loginInfo'
+      ])
+    },
     methods: {
       back() {
         this.$router.back(-1)
@@ -54,8 +60,8 @@
         bool
           ? this.isTop = true
           : !this.access_token
-            ? this.isTop = false
-            : ''
+          ? this.isTop = false
+          : ''
         /*if (bool) {
          this.isTop = true
          } else {
@@ -64,11 +70,6 @@
          }
          }*/
       },
-    },
-    computed: {
-      ...mapState([
-        'loginInfo'
-      ])
     },
     watch: {
       access_token(val, oldVal) {
@@ -113,8 +114,8 @@
       }
     }
     .error-info {
-      margin-top:pr(5);
-      font-size:pr(12);
+      margin-top: pr(5);
+      font-size: pr(12);
       color: #f00;
     }
     .login-label {

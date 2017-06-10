@@ -25,3 +25,7 @@ $baseColor: #388e3c;
   url('//at.alicdn.com/t/font_e3r3kwh70n8hyqfr.ttf') format('truetype'),
   url('//at.alicdn.com/t/font_e3r3kwh70n8hyqfr.svg#iconfont') format('svg');
 }
+
+img[src=""] {
+  opacity:0;
+}
