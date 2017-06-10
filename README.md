@@ -5,7 +5,7 @@
   
 >  尽量接近原生App的Material Design风格，参考了Google Play，Cnode的Android客户端。
   
-##技术栈
+## 技术栈
 vue2 + vue-router2 + vuex + es6 + webpack + axios + scss + flex + [vue-material](https://github.com/vuematerial/vue-material)
 
 ## Build Setup
@@ -26,7 +26,7 @@ npm run build
 npm run build --report
 ```
 
-##功能
+## 功能
 - [x] 登录
 - [x] 保存登录
 - [x] 注销 

@@ -1,13 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="69cd4e4a-afc0-48c8-bf94-32dbdc8a3fc1" name="Default" comment="修改编辑按钮动画">
+    <list default="true" id="69cd4e4a-afc0-48c8-bf94-32dbdc8a3fc1" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/Detail.vue" afterPath="$PROJECT_DIR$/src/components/Detail.vue" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/store/actions.js" afterPath="$PROJECT_DIR$/src/store/actions.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/store/index.js" afterPath="$PROJECT_DIR$/src/store/index.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/store/mutations.js" afterPath="$PROJECT_DIR$/src/store/mutations.js" />
     </list>
     <ignored path="$PROJECT_DIR$/node_modules/" />
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -31,8 +27,8 @@
           <file leaf-file-name="Topic.vue" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/components/Topic.vue">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="330">
-                  <caret line="93" column="9" lean-forward="true" selection-start-line="90" selection-start-column="8" selection-end-line="93" selection-end-column="9" />
+                <state relative-caret-position="176">
+                  <caret line="93" column="9" lean-forward="false" selection-start-line="90" selection-start-column="8" selection-end-line="93" selection-end-column="9" />
                   <folding />
                 </state>
               </provider>
@@ -63,11 +59,11 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="Detail.vue" pinned="false" current-in-tab="true">
+          <file leaf-file-name="Detail.vue" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/components/Detail.vue">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="440">
-                  <caret line="115" column="29" lean-forward="true" selection-start-line="115" selection-start-column="29" selection-end-line="115" selection-end-column="29" />
+                  <caret line="115" column="29" lean-forward="false" selection-start-line="115" selection-start-column="29" selection-end-line="115" selection-end-column="29" />
                   <folding>
                     <element signature="e#4326#4361#0" expanded="true" />
                     <element signature="e#4967#5633#0" expanded="false" />
@@ -76,12 +72,12 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="README.md" pinned="false" current-in-tab="false">
+          <file leaf-file-name="README.md" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/README.md">
               <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
                 <state split_layout="SPLIT">
-                  <first_editor relative-caret-position="590">
-                    <caret line="40" column="4" lean-forward="false" selection-start-line="40" selection-start-column="4" selection-end-line="40" selection-end-column="4" />
+                  <first_editor relative-caret-position="506">
+                    <caret line="28" column="3" lean-forward="false" selection-start-line="28" selection-start-column="3" selection-end-line="28" selection-end-column="3" />
                     <folding />
                   </first_editor>
                   <second_editor />
@@ -170,7 +166,7 @@
           <file leaf-file-name="Topic.vue" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/components/Topic.vue">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="483">
+                <state relative-caret-position="329">
                   <caret line="109" column="6" lean-forward="false" selection-start-line="109" selection-start-column="6" selection-end-line="109" selection-end-column="6" />
                   <folding />
                 </state>
@@ -284,11 +280,11 @@
         <option value="$PROJECT_DIR$/src/components/UserReply.vue" />
         <option value="$PROJECT_DIR$/src/components/User.vue" />
         <option value="$PROJECT_DIR$/src/components/Topic.vue" />
-        <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/src/components/Detail.vue" />
         <option value="$PROJECT_DIR$/src/store/mutations.js" />
         <option value="$PROJECT_DIR$/src/store/actions.js" />
         <option value="$PROJECT_DIR$/src/store/index.js" />
+        <option value="$PROJECT_DIR$/README.md" />
       </list>
     </option>
   </component>
@@ -560,7 +556,7 @@
       <workItem from="1496024979881" duration="601000" />
       <workItem from="1496199840114" duration="3798000" />
       <workItem from="1496320639397" duration="77615000" />
-      <workItem from="1497063868504" duration="2604000" />
+      <workItem from="1497063868504" duration="3021000" />
     </task>
     <task id="LOCAL-00001" summary="readme">
       <created>1496210828218</created>
@@ -688,11 +684,18 @@
       <option name="project" value="LOCAL" />
       <updated>1496930415539</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="修复跳转问题">
+      <created>1497066541992</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1497066541992</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="205218000" />
+    <option name="totallyTimeSpent" value="205635000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -778,7 +781,8 @@
     <MESSAGE value="新增消息，修改detail返回路径" />
     <MESSAGE value="修改编辑按钮动画" />
     <MESSAGE value="优化发表主题" />
-    <option name="LAST_COMMIT_MESSAGE" value="优化发表主题" />
+    <MESSAGE value="修复跳转问题" />
+    <option name="LAST_COMMIT_MESSAGE" value="修复跳转问题" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -980,8 +984,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/components/Message.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3080">
-          <caret line="140" column="29" lean-forward="false" selection-start-line="140" selection-start-column="29" selection-end-line="140" selection-end-column="29" />
+        <state relative-caret-position="1474">
+          <caret line="69" column="47" lean-forward="false" selection-start-line="68" selection-start-column="8" selection-end-line="69" selection-end-column="47" />
           <folding>
             <element signature="n#style#0;n#h2#0;n#md-toolbar#0;n#div#0;n#template#0;n#!!top" expanded="true" />
             <element signature="e#1236#1261#0" expanded="true" />
@@ -1073,21 +1077,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/README.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="590">
-            <caret line="40" column="4" lean-forward="false" selection-start-line="40" selection-start-column="4" selection-end-line="40" selection-end-column="4" />
-            <folding />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/Topic.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="483">
-          <caret line="109" column="6" lean-forward="false" selection-start-line="109" selection-start-column="6" selection-end-line="109" selection-end-column="6" />
+        <state relative-caret-position="176">
+          <caret line="93" column="9" lean-forward="false" selection-start-line="90" selection-start-column="8" selection-end-line="93" selection-end-column="9" />
           <folding />
         </state>
       </provider>
@@ -1095,7 +1088,7 @@
     <entry file="file://$PROJECT_DIR$/src/components/Detail.vue">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="440">
-          <caret line="115" column="29" lean-forward="true" selection-start-line="115" selection-start-column="29" selection-end-line="115" selection-end-column="29" />
+          <caret line="115" column="29" lean-forward="false" selection-start-line="115" selection-start-column="29" selection-end-line="115" selection-end-column="29" />
           <folding>
             <element signature="e#4326#4361#0" expanded="true" />
             <element signature="e#4967#5633#0" expanded="false" />
@@ -1126,6 +1119,17 @@
           <folding>
             <element signature="e#39#60#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="506">
+            <caret line="28" column="3" lean-forward="false" selection-start-line="28" selection-start-column="3" selection-end-line="28" selection-end-column="3" />
+            <folding />
+          </first_editor>
+          <second_editor />
         </state>
       </provider>
     </entry>
