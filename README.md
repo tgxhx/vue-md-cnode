@@ -16,7 +16,7 @@ vue2 + vue-router2 + vuex + es6 + webpack + axios + scss + flex + [vue-material]
 * MD风格：使用vue-material组件库来实现高仿原生md风格
 * icons：使用Google官方的[material design icon](material.io/icons/)
 * markdown编辑器：[mavonEditor](https://github.com/hinesboy/mavonEditor)
-* 无限滚动：[vue-mugen-scroll](https://github.com/egoist/vue-mugen -scroll) 实现思路是滚动到底部使page加1，然后通过watch监听page的变化，再获取数据通过concat凭借到原列表
+* 无限滚动：[vue-mugen-scroll](https://github.com/egoist/vue-mugen-scroll) 实现思路是滚动到底部使page加1，然后通过watch监听page的变化，再获取数据通过concat凭借到原列表
 * 移动端适配：在head标签通过js动态设置html标签的font-size，配合sass的自定义函数，具体可以参考[这篇文章](https://segmentfault.com/a/1190000008721148)，使用方式比如width:100px;可以写成width:pr(100);
 
 ## Build Setup
