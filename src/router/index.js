@@ -1,12 +1,5 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Topic from '../components/Topic'
-import Detail from '../components/Detail'
-import Login from '../components/Login'
-import User from '../components/User'
-import UserReply from '../components/UserReply'
-import New from '../components/New'
-import Message from '../components/Message'
 
 Vue.use(Router)
 
@@ -19,39 +12,39 @@ export default new Router({
     {
       path: '/topic',
       name: 'Topic',
-      component: Topic
+      component: resolve => require(['../components/Topic.vue'], resolve)
     },
     {
       path: '/detail',
       name: 'Detail',
-      component: Detail
+      component: resolve => require(['../components/Detail.vue'], resolve)
     },
     {
       path: '/login',
       name: 'Login',
-      component: Login
+      component: resolve => require(['../components/Login.vue'], resolve)
     },
     {
       path: '/user/:id',
       redirect: '/user/:id/reply',
       name: 'User',
-      component: User,
-      children:[
+      component: resolve => require(['../components/User.vue'], resolve),
+      children: [
         {
           path: ':type',
-          component: UserReply
+          component: resolve => require(['../components/UserReply.vue'], resolve)
         }
       ]
     },
     {
       path: '/new',
       name: 'New',
-      component: New
+      component: resolve => require(['../components/New.vue'], resolve)
     },
     {
       path: '/message',
       name: 'Message',
-      component: Message
+      component: resolve => require(['../components/Message.vue'], resolve)
     }
   ]
 })
