@@ -22,7 +22,7 @@ vue2 + vue-router2 + vuex + es6 + webpack + axios + scss + flex + [vue-material]
 ## Build Setup
 
 ``` bash
-git clone git@github.com:tgxhx/vue-cnode.git
+git clone git@github.com:tgxhx/vue-md-cnode.git
 
 # install dependencies
 npm install
@@ -54,4 +54,12 @@ npm run build --report
 - [x] 消息 
 - [ ] 消息已读 
 - [x] 移动端适配 
+
+## 部分截图
+![](./screen/img1.png)
+![](./screen/img2.png)
+![](./screen/img3.png)
+![](./screen/img4.png)
+![](./screen/img5.png)
+![](./screen/img6.png)
 
