@@ -6,6 +6,8 @@
 > 基于vue全家桶的Material Design风格Cnode社区
   
 >  尽量接近原生App的Material Design风格，参考了Google Play，Cnode的Android客户端。
+
+> 另外推荐一下自己另一个vue + express + nodejs爬虫构建的整站移动书城项目:[地址](https://github.com/tgxhx/vue-reader)
   
 ## 技术栈
 vue2 + vue-router2 + vuex + es6 + webpack + axios + scss + flex + [vue-material](https://github.com/vuematerial/vue-material)
