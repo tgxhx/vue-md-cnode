@@ -56,10 +56,10 @@ npm run build --report
 - [x] 移动端适配 
 
 ## 部分截图
-![](./screen/img1.png)
-![](./screen/img2.png)
-![](./screen/img3.png)
-![](./screen/img4.png)
-![](./screen/img5.png)
-![](./screen/img6.png)
+![](http://i1.buimg.com/502037/925afb142b2d5e82.png)
+![](http://i1.buimg.com/502037/3c3d61f521c2cdd0.png)
+![](http://i1.buimg.com/502037/90edc6ad694d10b5.png)
+![](http://i1.buimg.com/502037/1b69a056023ff385.png)
+![](http://i1.buimg.com/502037/1505a95dd6819954.png)
+![](http://i1.buimg.com/502037/e3d9a53a0876bb0d.png)
 
